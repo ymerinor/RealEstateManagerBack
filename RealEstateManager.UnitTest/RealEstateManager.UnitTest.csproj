@@ -22,4 +22,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="System\Application\Services\" />
+    <Folder Include="System\Fixtures\" />
+    <Folder Include="System\Infrastructure\" />
+  </ItemGroup>
+
 </Project>
