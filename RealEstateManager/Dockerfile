@@ -9,10 +9,10 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["RealEstateManager/RealEstateManager.csproj", "RealEstateManager/"]
-RUN dotnet restore "./RealEstateManager/./RealEstateManager.csproj"
+COPY ["RealEstateManager.csproj", "."]
+RUN dotnet restore "./././RealEstateManager.csproj"
 COPY . .
-WORKDIR "/src/RealEstateManager"
+WORKDIR "/src/."
 RUN dotnet build "./RealEstateManager.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
