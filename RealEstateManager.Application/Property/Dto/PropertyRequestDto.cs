@@ -1,12 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RealEstateManager.Application.Common;
 
 namespace RealEstateManager.Application.Property.Dto
 {
+    /// <summary>
+    /// Objeto request para la creacion de una Propeidad
+    /// </summary>
     public class PropertyRequestDto
     {
+
+        /// <summary>
+        /// Obtiene o establece el nombre de la propiedad. Puede ser nulo.
+        /// </summary>
+        public string Name { get; set; } = null!;
+
+        /// <summary>
+        /// Obtiene o establece los detalles de la propiedad.No Puede ser nulo.
+        /// </summary>
+        public string Details { get; set; } = null!;
+
+        /// <summary>
+        /// Obtiene o establece el código interno de la propiedad.No Puede ser nulo.
+        /// </summary>
+        public string CodeInternal { get; set; } = null!;
+
+        /// <summary>
+        /// Obtiene o establece la ciudad de la propiedad.
+        /// </summary>
+        public string City { get; set; } = null!;
+
+        /// <summary>
+        /// Obtiene o establece el país de la propiedad.
+        /// </summary>
+        public string Country { get; set; } = null!;
+
+        /// <summary>
+        /// Obtiene o establece la dirección de la propiedad.
+        /// </summary>
+        public string Address { get; set; } = null!;
+
+        /// <summary>
+        /// Obtiene o establece el número de habitaciones de la propiedad.
+        /// </summary>
+        public int Bedrooms { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el número de baños de la propiedad.
+        /// </summary>
+        public int Bathrooms { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el año de construcción de la propiedad.
+        /// </summary>
+        public int Year { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el identificador del propietario mediante la clave externa.
+        /// </summary>
+        public int IdOwner { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el identificador del tipo de propiedad.
+        /// </summary>
+        public int IdPropertyType { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece el estado de la propiedad.
+        /// </summary>
+        public PropertysStatusEnum Status { get; set; }
     }
 }

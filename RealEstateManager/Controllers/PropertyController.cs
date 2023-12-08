@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RealEstateManager.Application.Property.Dto;
+using RealEstateManager.Application.Property.Interfaces;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +11,11 @@ namespace RealEstateManager.Controllers
     [ApiController]
     public class PropertyController : ControllerBase
     {
+        private readonly IPropertyServices _propertyServices;
+        public PropertyController(IPropertyServices propertyServices)
+        {
+            _propertyServices = propertyServices;
+        }
         // GET: api/<PropertyController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -24,8 +32,10 @@ namespace RealEstateManager.Controllers
 
         // POST api/<PropertyController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] PropertyRequestDto propertyRequestDto)
         {
+            var propertyCreate = await _propertyServices.CreateAsync(propertyRequestDto);
+            return Ok(propertyCreate);
         }
 
         // PUT api/<PropertyController>/5

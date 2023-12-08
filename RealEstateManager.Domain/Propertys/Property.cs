@@ -32,22 +32,22 @@ namespace RealEstateManager.Domain.Propertys
         /// <summary>
         /// Obtiene o establece la ciudad de la propiedad.
         /// </summary>
-        public string City { get; set; }
+        public string City { get; set; } = null!;
 
         /// <summary>
         /// Obtiene o establece el país de la propiedad.
         /// </summary>
-        public string Country { get; set; }
+        public string Country { get; set; } = null!;
 
         /// <summary>
         /// Obtiene o establece la dirección de la propiedad.
         /// </summary>
-        public string Address { get; set; }
+        public string Address { get; set; } = null!;
 
         /// <summary>
         /// Obtiene o establece el número de habitaciones de la propiedad.
         /// </summary>
-        public int Bedrooms { get; set; }
+        public int Bedrooms { get; set; } = 0;
 
         /// <summary>
         /// Obtiene o establece el número de baños de la propiedad.
@@ -83,12 +83,12 @@ namespace RealEstateManager.Domain.Propertys
         /// <summary>
         /// Obtiene o establece el estado de la propiedad.
         /// </summary>
-        public string Status { get; set; }
+        public string Status { get; set; } = null!;
 
         /// <summary>
         /// Obtiene o establece la relación con el propietario de la propiedad.
         /// </summary>
-        public virtual Owner Owner { get; set; }
+        public virtual required Owner Owner { get; set; }
 
         /// <summary>
         /// Obtiene o establece la colección de imágenes asociadas a la propiedad.

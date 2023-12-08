@@ -1,7 +1,12 @@
+using RealEstateManager.Application.Property.Interfaces;
+using RealEstateManager.Application.Property.Services;
+using System.Diagnostics.CodeAnalysis;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddControllers();
+ConfigureServices(builder.Services);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -23,3 +28,10 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+[ExcludeFromCodeCoverage]
+void ConfigureServices(IServiceCollection services)
+{
+    services.AddTransient<IPropertyServices, PropertyServices>();
+
+}

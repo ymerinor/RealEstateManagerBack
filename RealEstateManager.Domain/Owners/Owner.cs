@@ -23,12 +23,12 @@
         /// <summary>
         /// Obtiene o establece la ciudad del propietario.
         /// </summary>
-        public string City { get; set; }
+        public string City { get; set; } = null!;
 
         /// <summary>
         /// Obtiene o establece el país del propietario.
         /// </summary>
-        public string Country { get; set; }
+        public string Country { get; set; } = null!;
 
         /// <summary>
         /// Obtiene o establece el número de teléfono del propietario. Es obligatorio y puede ser nulo.
