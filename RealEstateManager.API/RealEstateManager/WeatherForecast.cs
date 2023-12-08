@@ -1,4 +1,4 @@
-namespace RealEstateManager.API
+namespace RealEstateManager
 {
     public class WeatherForecast
     {
