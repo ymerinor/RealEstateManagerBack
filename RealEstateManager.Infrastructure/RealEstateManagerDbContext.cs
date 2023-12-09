@@ -42,7 +42,10 @@ namespace RealEstateManager.Infrastructure
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+            modelBuilder.ApplyConfiguration(new OwnerConfiguration());
+            modelBuilder.ApplyConfiguration(new PropertyTypeConfiguration());
             modelBuilder.ApplyConfiguration(new PropertysConfiguration());
+            modelBuilder.ApplyConfiguration(new PropertyImageConfiguration());
             base.OnModelCreating(modelBuilder);
 
         }
