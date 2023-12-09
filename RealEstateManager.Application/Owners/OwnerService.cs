@@ -8,6 +8,10 @@ namespace RealEstateManager.Application.Owners
     {
         private readonly IOwnerRepository _ownerRepository = ownerRepository;
 
+        public async Task<IEnumerable<Owner>> GetAllAsync()
+        {
+            return await _ownerRepository.GetAllAsync();
+        }
         public async Task<Owner> GetByIdAsync(int idOwner)
         {
             return await _ownerRepository.GetByIdAsync(idOwner);

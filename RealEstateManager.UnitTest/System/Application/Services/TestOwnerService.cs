@@ -1,5 +1,6 @@
 ﻿using Moq;
 using RealEstateManager.Application.Owners;
+using RealEstateManager.Domain.Owners;
 using RealEstateManager.Domain.Repository;
 using RealEstateManager.UnitTest.System.Fixtures;
 
@@ -20,6 +21,21 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             var result = await serviceProduct.GetByIdAsync(1);
             //Assert
             Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async Task GetAll_Product()
+        {
+            //Arrage
+            var mockRepository = new Mock<IOwnerRepository>();
+            mockRepository
+                .Setup(repository => repository.GetAllAsync())
+                .ReturnsAsync(new List<Owner> { PropertyFixtures.OwnerCreateTest });
+            var serviceProduct = new OwnerService(mockRepository.Object);
+            //Act
+            var result = await serviceProduct.GetAllAsync();
+            //Assert
+            Assert.True(result.Any());
         }
     }
 }
