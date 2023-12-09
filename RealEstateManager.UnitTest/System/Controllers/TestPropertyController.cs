@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
-using RealEstateManager.Application.Property.Dto;
-using RealEstateManager.Application.Property.Interfaces;
+using RealEstateManager.Application.Propertys.Dto;
+using RealEstateManager.Application.Propertys.Interfaces;
 using RealEstateManager.Controllers;
 using RealEstateManager.UnitTest.System.Fixtures;
 namespace RealEstateManager.UnitTest.System.Controllers
@@ -12,7 +12,7 @@ namespace RealEstateManager.UnitTest.System.Controllers
         public async Task Post_Succes_StatusCode200()
         {
             //Arrage
-            var mockPropertyProductServices = new Mock<IPropertyServices>();
+            var mockPropertyProductServices = new Mock<IPropertyService>();
             var controller = new PropertyController(mockPropertyProductServices.Object);
             //Act
             var result = (OkObjectResult)await controller.Post(PropertyFixtures.PropertyRequestDtoTest);
@@ -24,7 +24,7 @@ namespace RealEstateManager.UnitTest.System.Controllers
         public async Task Post_Succes_InvokeServiceOnce()
         {
             //Arrage
-            var mockPropertyProductServices = new Mock<IPropertyServices>();
+            var mockPropertyProductServices = new Mock<IPropertyService>();
             mockPropertyProductServices.Setup(service => service.CreateAsync(It.IsAny<PropertyRequestDto>()))
                 .ReturnsAsync(PropertyFixtures.PropertyRequestDtoTest);
             var controller = new PropertyController(mockPropertyProductServices.Object);

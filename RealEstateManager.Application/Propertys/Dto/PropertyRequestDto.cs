@@ -1,6 +1,7 @@
 ﻿using RealEstateManager.Application.Common;
+using RealEstateManager.Domain.Propertys;
 
-namespace RealEstateManager.Application.Property.Dto
+namespace RealEstateManager.Application.Propertys.Dto
 {
     /// <summary>
     /// Objeto request para la creacion de una Propeidad
@@ -67,5 +68,31 @@ namespace RealEstateManager.Application.Property.Dto
         /// Obtiene o establece el estado de la propiedad.
         /// </summary>
         public PropertysStatusEnum Status { get; set; }
+
+        // <summary>
+        /// Convierte de forma implícita una instancia de PropertyRequestDto a Property.
+        /// </summary>
+        /// <param name="requestDto">Instancia de PropertyRequestDto a convertir.</param>
+        /// <returns>Instancia de Property resultante de la conversión.</returns>
+        public static implicit operator Property(PropertyRequestDto requestDto)
+        {
+            return new Property
+            {
+                Name = requestDto.Name,
+                Details = requestDto.Details,
+                CodeInternal = requestDto.CodeInternal,
+                City = requestDto.City,
+                Country = requestDto.Country,
+                Address = requestDto.Address,
+                Bedrooms = requestDto.Bedrooms,
+                Bathrooms = requestDto.Bathrooms,
+                Year = requestDto.Year,
+                IdOwner = requestDto.IdOwner,
+                IdPropertyType = requestDto.IdPropertyType,
+                CreateDate = DateTime.Now,
+                LastModified = DateTime.Now,
+                Status = requestDto.Status.ToString(), // Convertir el enum a string
+            };
+        }
     }
 }

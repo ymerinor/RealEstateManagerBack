@@ -25,11 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="System\Application\Services\" />
     <Folder Include="System\Infrastructure\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RealEstateManager.Domain\RealEstateManager.Domain.csproj" />
     <ProjectReference Include="..\RealEstateManager\RealEstateManager.csproj" />
   </ItemGroup>
 

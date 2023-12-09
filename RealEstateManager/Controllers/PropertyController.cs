@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RealEstateManager.Application.Property.Dto;
-using RealEstateManager.Application.Property.Interfaces;
+using RealEstateManager.Application.Propertys.Dto;
+using RealEstateManager.Application.Propertys.Interfaces;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,8 +11,8 @@ namespace RealEstateManager.Controllers
     [ApiController]
     public class PropertyController : ControllerBase
     {
-        private readonly IPropertyServices _propertyServices;
-        public PropertyController(IPropertyServices propertyServices)
+        private readonly IPropertyService _propertyServices;
+        public PropertyController(IPropertyService propertyServices)
         {
             _propertyServices = propertyServices;
         }

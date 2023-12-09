@@ -88,7 +88,7 @@ namespace RealEstateManager.Domain.Propertys
         /// <summary>
         /// Obtiene o establece la relación con el propietario de la propiedad.
         /// </summary>
-        public virtual required Owner Owner { get; set; }
+        public virtual Owner Owner { get; set; }
 
         /// <summary>
         /// Obtiene o establece la colección de imágenes asociadas a la propiedad.
