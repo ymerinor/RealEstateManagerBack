@@ -1,6 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using RealEstateManager.Application.Propertys.Interfaces;
 using RealEstateManager.Application.Propertys.Services;
 using RealEstateManager.Domain.Repository;
+using RealEstateManager.Infrastructure;
 using RealEstateManager.Infrastructure.Repository;
 using System.Diagnostics.CodeAnalysis;
 
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddDbContext<RealEstateManagerDbContext>(options =>
+                   options.UseSqlServer(builder.Configuration.GetConnectionString("RealEstateConnection")));
 builder.Services.AddTransient<IPropertyRepository, PropertyRepository>();
 ConfigureServices(builder.Services);
 builder.Services.AddControllers();

@@ -7,6 +7,8 @@ namespace RealEstateManager.Domain.Propertys
     /// <summary>
     /// Clase que representa una propiedad inmobiliaria.
     /// </summary>
+
+    [Table("Property")]
     public class Property
     {
         /// <summary>

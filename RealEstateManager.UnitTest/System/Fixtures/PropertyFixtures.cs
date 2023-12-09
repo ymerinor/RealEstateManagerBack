@@ -16,7 +16,7 @@ namespace RealEstateManager.UnitTest.System.Fixtures
             Country = "USA",
             Details = "Muse Residences 2601 this spacious full-floor residence boasts 4 bed, 5.1 bath plus office , and spans 6,000 square feet",
             IdOwner = 1,
-            IdPropertyType = 1,
+            PropertyType = 1,
             Name = "Unidad 2035",
             Status = PropertysStatusEnum.Activo,
             Year = 2019

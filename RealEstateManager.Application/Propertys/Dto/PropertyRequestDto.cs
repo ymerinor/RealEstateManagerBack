@@ -62,7 +62,7 @@ namespace RealEstateManager.Application.Propertys.Dto
         /// <summary>
         /// Obtiene o establece el identificador del tipo de propiedad.
         /// </summary>
-        public int IdPropertyType { get; set; }
+        public int PropertyType { get; set; }
 
         /// <summary>
         /// Obtiene o establece el estado de la propiedad.
@@ -88,7 +88,7 @@ namespace RealEstateManager.Application.Propertys.Dto
                 Bathrooms = requestDto.Bathrooms,
                 Year = requestDto.Year,
                 IdOwner = requestDto.IdOwner,
-                IdPropertyType = requestDto.IdPropertyType,
+                IdPropertyType = requestDto.PropertyType,
                 CreateDate = DateTime.Now,
                 LastModified = DateTime.Now,
                 Status = requestDto.Status.ToString(), // Convertir el enum a string
