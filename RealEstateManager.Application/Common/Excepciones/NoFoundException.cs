@@ -1,8 +1,12 @@
-﻿namespace RealEstateManager.Application.Common.Excepciones
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace RealEstateManager.Application.Common.Excepciones
 {
     /// <summary>
     /// Excepción lanzada cuando no se encuentra un recurso.
     /// </summary>
+
+    [ExcludeFromCodeCoverage]
     internal class NoFoundException : Exception
     {
         /// <summary>
