@@ -19,6 +19,12 @@ namespace RealEstateManager.Application.Propertys.Services
             return propertyRequestDto;
         }
 
+        public async Task<IEnumerable<PropertyDto>> GetAllAsync()
+        {
+            var propertyInfomation = await _propertyRepository.GetAllAsync();
+            var listPropertyDto = propertyInfomation.Select(s => (PropertyDto)s).ToList();
+            return listPropertyDto;
+        }
         protected async Task<Owner> OwnerExists(int ownerId)
         {
             var ownerInfomation = await _ownerRepository.GetByIdAsync(ownerId);

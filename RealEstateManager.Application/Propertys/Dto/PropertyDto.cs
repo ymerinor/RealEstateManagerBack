@@ -1,13 +1,14 @@
-﻿using RealEstateManager.Application.Common;
-using RealEstateManager.Domain.Propertys;
+﻿using RealEstateManager.Domain.Propertys;
 
 namespace RealEstateManager.Application.Propertys.Dto
 {
-    /// <summary>
-    /// Objeto request para la creacion de una Propeidad
-    /// </summary>
-    public class PropertyRequestDto
+    public class PropertyDto
     {
+
+        /// <summary>
+        /// Obtiene o establece el identificador de la propiedad.
+        /// </summary>
+        public int IdProperty { get; set; }
 
         /// <summary>
         /// Obtiene o establece el nombre de la propiedad. Puede ser nulo.
@@ -65,41 +66,59 @@ namespace RealEstateManager.Application.Propertys.Dto
         public int IdOwner { get; set; }
 
         /// <summary>
+        /// Obtiene o establece el Nobre del propietario.
+        /// </summary>
+        public string OwnerName { get; set; } = string.Empty;
+
+        /// <summary>
         /// Obtiene o establece el identificador del tipo de propiedad.
         /// </summary>
         public int PropertyType { get; set; }
 
         /// <summary>
+        /// Obtiene o establece el nombre del tipo de propiedad.
+        /// </summary>
+        public string PropertyTypeName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Obtiene o establece la fecha de creación de la propiedad.
+        /// </summary>
+        public DateTime CreateDate { get; set; }
+
+
+        /// <summary>
+        /// Obtiene o establece la fecha de la última modificación de la propiedad.
+        /// </summary>
+        public DateTime LastModified { get; set; }
+
+        /// <summary>
         /// Obtiene o establece el estado de la propiedad.
         /// </summary>
-        public PropertysStatusEnum Status { get; set; }
+        public string Status { get; set; } = string.Empty;
 
 
-
-        // <summary>
-        /// Convierte de forma implícita una instancia de PropertyRequestDto a Property.
-        /// </summary>
-        /// <param name="requestDto">Instancia de PropertyRequestDto a convertir.</param>
-        /// <returns>Instancia de Property resultante de la conversión.</returns>
-        public static implicit operator Property(PropertyRequestDto requestDto)
+        public static implicit operator PropertyDto(Property property)
         {
-            return new Property
+            return new PropertyDto
             {
-                Name = requestDto.Name,
-                Details = requestDto.Details,
-                CodeInternal = requestDto.CodeInternal,
-                City = requestDto.City,
-                Country = requestDto.Country,
-                Price = requestDto.Price,
-                Address = requestDto.Address,
-                Bedrooms = requestDto.Bedrooms,
-                Bathrooms = requestDto.Bathrooms,
-                Year = requestDto.Year,
-                IdOwner = requestDto.IdOwner,
-                IdPropertyType = requestDto.PropertyType,
-                CreateDate = DateTime.Now,
-                Status = requestDto.Status.ToString(), // Convertir el enum a string
-
+                IdProperty = property.IdProperty,
+                Name = property.Name,
+                Details = property.Details,
+                CodeInternal = property.CodeInternal,
+                City = property.City,
+                Country = property.Country,
+                Price = property.Price,
+                Address = property.Address,
+                Bedrooms = property.Bedrooms,
+                Bathrooms = property.Bathrooms,
+                Year = property.Year,
+                IdOwner = property.IdOwner,
+                OwnerName = property.Owner.Name,
+                PropertyType = property.IdPropertyType,
+                PropertyTypeName = property.PropertyType.Name,
+                Status = property.Status,
+                CreateDate = property.CreateDate,
+                LastModified = property.LastModified,
             };
         }
     }

@@ -1,5 +1,6 @@
 ﻿using RealEstateManager.Domain.Owners;
 using RealEstateManager.Domain.PropertyImages;
+using RealEstateManager.Domain.PropertyTypes;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RealEstateManager.Domain.Propertys
@@ -7,8 +8,6 @@ namespace RealEstateManager.Domain.Propertys
     /// <summary>
     /// Clase que representa una propiedad inmobiliaria.
     /// </summary>
-
-    [Table("Property")]
     public class Property
     {
         /// <summary>
@@ -75,6 +74,7 @@ namespace RealEstateManager.Domain.Propertys
         /// <summary>
         /// Obtiene o establece el identificador del tipo de propiedad.
         /// </summary>
+        [ForeignKey(nameof(IdPropertyType))]
         public int IdPropertyType { get; set; }
 
         /// <summary>
@@ -96,6 +96,11 @@ namespace RealEstateManager.Domain.Propertys
         /// Obtiene o establece la relación con el propietario de la propiedad.
         /// </summary>
         public virtual Owner Owner { get; set; }
+
+        /// <summary>
+        /// Obtiene o establece la relación con el tipo de propiedad de la propiedad.
+        /// </summary>
+        public virtual PropertyType PropertyType { get; set; }
 
         /// <summary>
         /// Obtiene o establece la colección de imágenes asociadas a la propiedad.

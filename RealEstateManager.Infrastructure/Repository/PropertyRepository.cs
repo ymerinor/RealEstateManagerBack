@@ -1,4 +1,5 @@
-﻿using RealEstateManager.Domain.Propertys;
+﻿using Microsoft.EntityFrameworkCore;
+using RealEstateManager.Domain.Propertys;
 using RealEstateManager.Domain.Repository;
 
 namespace RealEstateManager.Infrastructure.Repository
@@ -12,6 +13,11 @@ namespace RealEstateManager.Infrastructure.Repository
             await _realEstateManagerDbContext.Property.AddAsync(property);
             await Commit();
             return property;
+        }
+
+        public async Task<IEnumerable<Property>> GetAllAsync()
+        {
+            return await _realEstateManagerDbContext.Property.ToListAsync();
         }
 
         private async Task Commit()

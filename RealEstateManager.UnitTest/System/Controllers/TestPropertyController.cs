@@ -24,14 +24,14 @@ namespace RealEstateManager.UnitTest.System.Controllers
         public async Task Post_Succes_InvokeServiceOnce()
         {
             //Arrage
-            var mockPropertyProductServices = new Mock<IPropertyService>();
-            mockPropertyProductServices.Setup(service => service.CreateAsync(It.IsAny<PropertyRequestDto>()))
+            var mockPropertyServices = new Mock<IPropertyService>();
+            mockPropertyServices.Setup(service => service.CreateAsync(It.IsAny<PropertyRequestDto>()))
                 .ReturnsAsync(PropertyFixtures.PropertyRequestDtoTest);
-            var controller = new PropertyController(mockPropertyProductServices.Object);
+            var controller = new PropertyController(mockPropertyServices.Object);
             //Act
             await controller.Post(PropertyFixtures.PropertyRequestDtoTest);
             //Assert
-            mockPropertyProductServices.Verify(
+            mockPropertyServices.Verify(
             service => service.CreateAsync(It.IsAny<PropertyRequestDto>()), Times.Once());
         }
 
@@ -39,12 +39,38 @@ namespace RealEstateManager.UnitTest.System.Controllers
         public async Task Post_Succes_StatusCode400()
         {
             //Arrage
-            var mockPropertyProductServices = new Mock<IPropertyService>();
-            var controller = new PropertyController(mockPropertyProductServices.Object);
+            var mockPropertyServices = new Mock<IPropertyService>();
+            var controller = new PropertyController(mockPropertyServices.Object);
             //Act
             var result = (BadRequestObjectResult)await controller.Post(PropertyFixtures.PropertyRequestBadRequestDtoTest);
             //Assert
             Assert.True(result.StatusCode == 400);
+        }
+
+        [Fact]
+        public async Task Get_Succes_StatusCode200()
+        {
+            //Arrage
+            var mockPropertyServices = new Mock<IPropertyService>();
+            var controller = new PropertyController(mockPropertyServices.Object);
+            //Act
+            var result = (OkObjectResult)await controller.Get();
+            //Assert
+            Assert.True(result.StatusCode == 200);
+        }
+
+        [Fact]
+        public async Task Get_Succes_InvokeServiceOnce()
+        {
+            //Arrage
+            var mockPropertyServices = new Mock<IPropertyService>();
+            mockPropertyServices.Setup(service => service.GetAllAsync())
+                .ReturnsAsync(new List<PropertyDto> { PropertyFixtures.PropertyGetTest });
+            var controller = new PropertyController(mockPropertyServices.Object);
+            //Act
+            await controller.Get();
+            //Assert
+            mockPropertyServices.Verify(service => service.GetAllAsync());
         }
     }
 }

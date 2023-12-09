@@ -19,9 +19,10 @@ namespace RealEstateManager.Controllers
         }
         // GET: api/<PropertyController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            var listProperty = await _propertyServices.GetAllAsync();
+            return Ok(listProperty);
         }
 
         // GET api/<PropertyController>/5
@@ -48,12 +49,6 @@ namespace RealEstateManager.Controllers
         // PUT api/<PropertyController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<PropertyController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
         {
         }
     }

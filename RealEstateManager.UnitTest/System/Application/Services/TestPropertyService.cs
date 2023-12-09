@@ -38,5 +38,35 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             await Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.CreateAsync(PropertyFixtures.PropertyRequestDtoTest));
 
         }
+
+
+        [Fact]
+        public async Task GetAllProperty_Sucess()
+        {
+            //Arrage
+            var mockRepository = new Mock<IPropertyRepository>();
+            var mockOwnerRepository = new Mock<IOwnerRepository>();
+            mockRepository.Setup(repository => repository.GetAllAsync()).ReturnsAsync(new List<Property> { PropertyFixtures.PropertyGetTest });
+
+            var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
+            //Act
+            var result = await serviceProperty.GetAllAsync();
+            //Assert
+            Assert.True(result.Any());
+        }
+
+        [Fact]
+        public async Task GetAllPropertyEmpty_Error()
+        {
+            //Arrage
+            var mockRepository = new Mock<IPropertyRepository>();
+            var mockOwnerRepository = new Mock<IOwnerRepository>();
+
+            var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
+            //Act
+            var result = await serviceProperty.GetAllAsync();
+            //Assert
+            Assert.False(result.Any());
+        }
     }
 }
