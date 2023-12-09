@@ -72,5 +72,18 @@ namespace RealEstateManager.UnitTest.System.Controllers
             //Assert
             mockPropertyServices.Verify(service => service.GetAllAsync());
         }
+
+        [Fact]
+        public async Task Patch_Succes_StatusCode200()
+        {
+            //Arrage
+            var mockPropertyServices = new Mock<IPropertyService>();
+            var controller = new PropertyController(mockPropertyServices.Object);
+            //Act
+            var result = (OkObjectResult)await controller.Patch(1, new ChangePriceProperty { Preci = 1000 });
+            //Assert
+            Assert.True(result.StatusCode == 200);
+        }
+
     }
 }

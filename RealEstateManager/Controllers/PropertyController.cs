@@ -25,13 +25,6 @@ namespace RealEstateManager.Controllers
             return Ok(listProperty);
         }
 
-        // GET api/<PropertyController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST api/<PropertyController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PropertyRequestDto propertyRequestDto)
@@ -46,10 +39,11 @@ namespace RealEstateManager.Controllers
             return Ok(propertyCreate);
         }
 
-        // PUT api/<PropertyController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // Patch api/<PropertyController>/5
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Patch(int id, [FromBody] ChangePriceProperty value)
         {
+            return Ok("");
         }
     }
 }
