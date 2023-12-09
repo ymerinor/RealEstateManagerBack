@@ -62,6 +62,11 @@ namespace RealEstateManager.Domain.Propertys
         public int Year { get; set; }
 
         /// <summary>
+        /// Obtiene o establece el precio de la propiedad.
+        /// </summary>
+        public decimal Price { get; set; }
+
+        /// <summary>
         /// Obtiene o establece el identificador del propietario mediante la clave externa.
         /// </summary>
         [ForeignKey(nameof(IdOwner))]

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RealEstateManager.Application.Propertys.Dto;
 using RealEstateManager.Application.Propertys.Interfaces;
+using RealEstateManager.Application.Propertys.Validations;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -34,6 +35,12 @@ namespace RealEstateManager.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PropertyRequestDto propertyRequestDto)
         {
+            var validator = new PropertyRequestValidator();
+            var validationResult = validator.Validate(propertyRequestDto);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
             var propertyCreate = await _propertyServices.CreateAsync(propertyRequestDto);
             return Ok(propertyCreate);
         }

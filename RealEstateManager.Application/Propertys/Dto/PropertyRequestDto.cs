@@ -55,6 +55,11 @@ namespace RealEstateManager.Application.Propertys.Dto
         public int Year { get; set; }
 
         /// <summary>
+        /// Obtiene o establece el precio de la propiedad.
+        /// </summary>
+        public decimal Price { get; set; }
+
+        /// <summary>
         /// Obtiene o establece el identificador del propietario mediante la clave externa.
         /// </summary>
         public int IdOwner { get; set; }
@@ -68,6 +73,8 @@ namespace RealEstateManager.Application.Propertys.Dto
         /// Obtiene o establece el estado de la propiedad.
         /// </summary>
         public PropertysStatusEnum Status { get; set; }
+
+
 
         // <summary>
         /// Convierte de forma implícita una instancia de PropertyRequestDto a Property.
@@ -83,6 +90,7 @@ namespace RealEstateManager.Application.Propertys.Dto
                 CodeInternal = requestDto.CodeInternal,
                 City = requestDto.City,
                 Country = requestDto.Country,
+                Price = requestDto.Price,
                 Address = requestDto.Address,
                 Bedrooms = requestDto.Bedrooms,
                 Bathrooms = requestDto.Bathrooms,

@@ -5,14 +5,9 @@ using RealEstateManager.Domain.Repository;
 
 namespace RealEstateManager.Application.Propertys.Services
 {
-    public class PropertyService : IPropertyService
+    public class PropertyService(IPropertyRepository propertyRepository) : IPropertyService
     {
-        private IPropertyRepository _propertyRepository;
-
-        public PropertyService(IPropertyRepository propertyRepository)
-        {
-            _propertyRepository = propertyRepository;
-        }
+        private readonly IPropertyRepository _propertyRepository = propertyRepository;
 
         public async Task<PropertyRequestDto> CreateAsync(PropertyRequestDto propertyRequestDto)
         {

@@ -3,13 +3,10 @@ using RealEstateManager.Domain.Repository;
 
 namespace RealEstateManager.Infrastructure.Repository
 {
-    public class PropertyRepository : IPropertyRepository
+    public class PropertyRepository(RealEstateManagerDbContext realEstateManagerDbContext) : IPropertyRepository
     {
-        private readonly RealEstateManagerDbContext _realEstateManagerDbContext;
-        public PropertyRepository(RealEstateManagerDbContext realEstateManagerDbContext)
-        {
-            _realEstateManagerDbContext = realEstateManagerDbContext;
-        }
+        private readonly RealEstateManagerDbContext _realEstateManagerDbContext = realEstateManagerDbContext;
+
         public async Task<Property> CreateAsync(Property property)
         {
             await _realEstateManagerDbContext.Property.AddAsync(property);

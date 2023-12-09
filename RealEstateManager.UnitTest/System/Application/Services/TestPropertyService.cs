@@ -9,7 +9,6 @@ namespace RealEstateManager.UnitTest.System.Application.Services
     public class TestPropertyService
     {
         [Fact]
-
         public async Task CreateProperty_Sucess()
         {
             //Arrage
@@ -22,5 +21,6 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             //Assert
             Assert.Equal(result.Name, PropertyFixtures.PropertyRequestDtoTest.Name);
         }
+
     }
 }

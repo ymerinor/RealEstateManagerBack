@@ -24,6 +24,17 @@ namespace RealEstateManager.UnitTest.System.Fixtures
             Year = 2019
         };
 
+        public static PropertyRequestDto PropertyRequestBadRequestDtoTest => new()
+        {
+            Address = "17141 COLLINS AVE #2601,SUNNY ISLES BEACH,FL 33160",
+            Bathrooms = 1,
+            Bedrooms = 2,
+            CodeInternal = "COD-1234",
+            IdOwner = 1,
+            PropertyType = 1,
+            Year = 2019
+        };
+
         public static Property PropertyTest => new()
         {
             Address = "17141 COLLINS AVE #2601,SUNNY ISLES BEACH,FL 33160",

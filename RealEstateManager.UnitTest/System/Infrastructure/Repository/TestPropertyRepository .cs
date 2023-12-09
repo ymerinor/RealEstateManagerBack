@@ -27,9 +27,6 @@ namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
             Assert.Equal(PropertyFixtures.PropertyCreateTest.Name, result.Name);
         }
 
-        public void Dispose()
-        {
-            _fixture.Dispose();
-        }
+        public void Dispose() => _fixture.Dispose();
     }
 }
