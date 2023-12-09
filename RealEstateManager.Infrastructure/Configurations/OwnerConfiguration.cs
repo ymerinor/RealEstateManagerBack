@@ -12,7 +12,6 @@ namespace RealEstateManager.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Owner> builder)
         {
             builder.ToTable("Owner");
-
             builder.HasKey("IdOwner");
         }
 

@@ -100,6 +100,7 @@ namespace RealEstateManager.Application.Propertys.Dto
                 CreateDate = DateTime.Now,
                 LastModified = DateTime.Now,
                 Status = requestDto.Status.ToString(), // Convertir el enum a string
+
             };
         }
     }

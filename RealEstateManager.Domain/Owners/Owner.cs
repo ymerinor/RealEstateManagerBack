@@ -38,7 +38,7 @@
         /// <summary>
         /// Obtiene o establece la fecha de nacimiento del propietario.
         /// </summary>
-        public DateTime Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
     }
 
 }

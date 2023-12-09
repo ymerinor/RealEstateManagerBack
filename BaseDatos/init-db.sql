@@ -6,9 +6,9 @@ CREATE TABLE Owner(
   IdOwner int PRIMARY KEY identity(1,1),
   Name varchar(60) Not Null,
   Address varchar(80) Not Null,
-  City varchar(100),
-  Country varchar(40),
-  Phone varchar(25),
+  City varchar(100) Not Null,
+  Country varchar(40) Not Null,
+  Phone varchar(25) Not Null,
   Birthday date
 );
 
@@ -63,9 +63,9 @@ CREATE TABLE PropertyTrace(
 )
 --Infomacion semilla para base de datos.
 GO
-INSERT INTO Owner (Name,Address,City,Country,Phone) VALUES('Juan Lopez','Calle 35 via a la playa', 'Bogota','Colombia','+5734567890')
+INSERT INTO Owner (Name,Address,City,Country,Phone) VALUES('Juan Lopez','Calle 35 via a la playa', 'Bogota','Colombia','+5734567890',GETDATE())
 GO
-INSERT INTO Owner (Name,Address,City,Country,Phone) VALUES('Jose Restrepo','Via Beach Miami', 'Miami','Estados Unidos','+5134567890')
+INSERT INTO Owner (Name,Address,City,Country,Phone) VALUES('Jose Restrepo','Via Beach Miami', 'Miami','Estados Unidos','+5134567890',GETDATE())
 GO
 INSERT INTO PropertyType (Name,Enabled,CreateDate) VALUES ('Residencial',1,GETDATE())
 GO

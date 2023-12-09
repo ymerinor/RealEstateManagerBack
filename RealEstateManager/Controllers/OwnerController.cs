@@ -7,13 +7,9 @@ namespace RealEstateManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OwnerController : ControllerBase
+    public class OwnerController(IOwnerService ownerService) : ControllerBase
     {
-        private readonly IOwnerService _ownerService;
-        public OwnerController(IOwnerService ownerService)
-        {
-            _ownerService = ownerService;
-        }
+        private readonly IOwnerService _ownerService = ownerService;
 
         // GET api/<OwnerController>
         [HttpGet]

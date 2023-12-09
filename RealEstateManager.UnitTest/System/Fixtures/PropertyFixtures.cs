@@ -66,23 +66,27 @@ namespace RealEstateManager.UnitTest.System.Fixtures
             Name = "Unidad 2035",
             CreateDate = DateTime.Now,
             Status = PropertysStatusEnum.Activo.ToString(),
-            Year = 2020
+            Year = 2020,
         };
 
         public static Owner OwnerCreateTest => new()
         {
+            IdOwner = 1,
             Address = "Calle 10 via al mar",
             City = "Miami",
             Country = "USA",
             Name = "Name",
-            Phone = "8978888"
+            Phone = "8978888",
+            Birthday = DateTime.Now
         };
 
         public static PropertyType PropertyTypeCreateTest => new()
         {
+            IdPropertyType = 1,
             Name = "Residencial",
             Enabled = true,
-            CreateDate = DateTime.Now
+            CreateDate = DateTime.Now,
+            LastModified = DateTime.Now
         };
     }
 }

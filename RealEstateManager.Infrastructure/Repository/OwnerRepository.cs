@@ -10,7 +10,7 @@ namespace RealEstateManager.Infrastructure.Repository
 
         public async Task<IEnumerable<Owner>> GetAllAsync()
         {
-            return await _realEstateManagerDbContext.Owner.ToArrayAsync();
+            return await _realEstateManagerDbContext.Owner.ToListAsync();
         }
 
         public async Task<Owner> GetByIdAsync(int idOwner)

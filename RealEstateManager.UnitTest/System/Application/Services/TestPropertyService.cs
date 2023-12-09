@@ -1,4 +1,5 @@
 ﻿using Moq;
+using RealEstateManager.Application.Common.Excepciones;
 using RealEstateManager.Application.Propertys.Services;
 using RealEstateManager.Domain.Propertys;
 using RealEstateManager.Domain.Repository;
@@ -13,14 +14,29 @@ namespace RealEstateManager.UnitTest.System.Application.Services
         {
             //Arrage
             var mockRepository = new Mock<IPropertyRepository>();
+            var mockOwnerRepository = new Mock<IOwnerRepository>();
             mockRepository.Setup(repository => repository.CreateAsync(It.IsAny<Property>())).ReturnsAsync(PropertyFixtures.PropertyTest);
+            mockOwnerRepository.Setup(repositoryOwner => repositoryOwner.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(PropertyFixtures.OwnerCreateTest);
 
-            var serviceProperty = new PropertyService(mockRepository.Object);
+            var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
             //Act
             var result = await serviceProperty.CreateAsync(PropertyFixtures.PropertyRequestDtoTest);
             //Assert
             Assert.Equal(result.Name, PropertyFixtures.PropertyRequestDtoTest.Name);
         }
 
+        [Fact]
+        public async Task CreateProperty_NoFoundExceptionOwner()
+        {
+            //Arrage
+            var mockRepository = new Mock<IPropertyRepository>();
+            var mockOwnerRepository = new Mock<IOwnerRepository>();
+            mockRepository.Setup(repository => repository.CreateAsync(It.IsAny<Property>())).ReturnsAsync(PropertyFixtures.PropertyTest);
+
+            var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
+            //Act && Assert
+            await Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.CreateAsync(PropertyFixtures.PropertyRequestDtoTest));
+
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace RealEstateManager.Application.Common.Excepciones
     /// </summary>
 
     [ExcludeFromCodeCoverage]
-    internal class NoFoundException : Exception
+    public class NoFoundException : Exception
     {
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="NoFoundException"/> con un mensaje de error.

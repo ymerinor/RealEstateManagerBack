@@ -1,11 +1,14 @@
 ﻿using RealEstateManager.Domain.Propertys;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RealEstateManager.Domain.PropertyTraces
 {
     /// <summary>
     /// Clase que representa el historial de transacciones de una propiedad inmobiliaria.
     /// </summary>
+
+    [ExcludeFromCodeCoverage]
     public class PropertyTrace
     {
         /// <summary>
