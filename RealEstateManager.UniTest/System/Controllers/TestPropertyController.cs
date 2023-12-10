@@ -127,5 +127,16 @@ namespace RealEstateManager.UnitTest.System.Controllers
             service => service.UpdateAsync(It.IsAny<int>(), It.IsAny<PropertyRequestDto>()), Times.Once());
         }
 
+        [Test]
+        public async Task Put_Succes_StatusCode400()
+        {
+            //Arrage
+            var mockPropertyServices = new Mock<IPropertyService>();
+            var controller = new PropertyController(mockPropertyServices.Object);
+            //Act
+            var result = (BadRequestObjectResult)await controller.Put(1, PropertyFixtures.PropertyRequestBadRequestDtoTest);
+            //Assert
+            Assert.IsTrue(result.StatusCode == 400);
+        }
     }
 }

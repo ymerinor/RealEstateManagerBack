@@ -32,7 +32,7 @@ namespace RealEstateManager.Domain.PropertyImages
         /// <summary>
         /// Obtiene o establece la relación con la propiedad asociada a la imagen.
         /// </summary>
-        public virtual required Property Property { get; set; }
+        public virtual Property Property { get; set; }
     }
 
 }

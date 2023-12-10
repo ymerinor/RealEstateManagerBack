@@ -134,5 +134,12 @@ namespace RealEstateManager.UnitTest.System.Fixtures
             CreateDate = DateTime.Now,
             LastModified = DateTime.Now
         };
+        public static PropertyImage PropertyImageTest => new()
+        {
+            IdProperty = 1,
+            IdPropertyImage = 1,
+            FilePath = "C://Nueva_Ruta",
+            Enabled = true
+        };
     }
 }
