@@ -11,6 +11,7 @@ namespace RealEstateManager.Application.Propertys.Services
     {
         private readonly IPropertyRepository _propertyRepository = propertyRepository;
         private readonly IOwnerRepository _ownerRepository = ownerRepository;
+
         public async Task<PropertyRequestDto> CreateAsync(PropertyRequestDto propertyRequestDto)
         {
             await OwnerExists(propertyRequestDto.IdOwner);
@@ -24,6 +25,12 @@ namespace RealEstateManager.Application.Propertys.Services
             var propertyInfomation = await _propertyRepository.GetAllAsync();
             var listPropertyDto = propertyInfomation.Select(s => (PropertyDto)s).ToList();
             return listPropertyDto;
+        }
+        public async Task<PropertyDto> ChangePreciAsync(int idProperty, ChangePriceProperty changePriceProperty)
+        {
+            var propertyUpdate = await _propertyRepository.GetByIdAsync(idProperty) ?? throw new NoFoundException($"no se encontro informacion relacionada con la propiedad id {idProperty} que intenta modificar");
+            propertyUpdate.Price = changePriceProperty.Preci;
+            return await _propertyRepository.UpdateAsync(propertyUpdate);
         }
         protected async Task<Owner> OwnerExists(int ownerId)
         {

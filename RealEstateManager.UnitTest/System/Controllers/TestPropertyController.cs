@@ -65,7 +65,7 @@ namespace RealEstateManager.UnitTest.System.Controllers
             //Arrage
             var mockPropertyServices = new Mock<IPropertyService>();
             mockPropertyServices.Setup(service => service.GetAllAsync())
-                .ReturnsAsync(new List<PropertyDto> { PropertyFixtures.PropertyGetTest });
+                .ReturnsAsync(new List<PropertyDto> { PropertyFixtures.PropertyTest });
             var controller = new PropertyController(mockPropertyServices.Object);
             //Act
             await controller.Get();
@@ -83,6 +83,21 @@ namespace RealEstateManager.UnitTest.System.Controllers
             var result = (OkObjectResult)await controller.Patch(1, new ChangePriceProperty { Preci = 1000 });
             //Assert
             Assert.True(result.StatusCode == 200);
+        }
+
+        [Fact]
+        public async Task Patch_Succes_InvokeServiceOnce()
+        {
+            //Arrage
+            var mockPropertyServices = new Mock<IPropertyService>();
+            mockPropertyServices.Setup(service => service.ChangePreciAsync(It.IsAny<int>(), It.IsAny<ChangePriceProperty>()))
+                .ReturnsAsync(PropertyFixtures.PropertyDto);
+            var controller = new PropertyController(mockPropertyServices.Object);
+            //Act
+            await controller.Patch(1, new ChangePriceProperty { Preci = 1000 });
+            //Assert
+            mockPropertyServices.Verify(
+            service => service.ChangePreciAsync(It.IsAny<int>(), It.IsAny<ChangePriceProperty>()), Times.Once());
         }
 
     }

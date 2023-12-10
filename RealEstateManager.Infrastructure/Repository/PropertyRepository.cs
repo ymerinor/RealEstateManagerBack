@@ -20,6 +20,18 @@ namespace RealEstateManager.Infrastructure.Repository
             return await _realEstateManagerDbContext.Property.ToListAsync();
         }
 
+        public async Task<Property?> GetByIdAsync(int idProperty)
+        {
+            return await _realEstateManagerDbContext.Property.FirstOrDefaultAsync(t => t.IdProperty == idProperty);
+        }
+
+        public async Task<Property> UpdateAsync(Property property)
+        {
+            _realEstateManagerDbContext.Entry(property).State = EntityState.Modified;
+            await Commit();
+            return property;
+        }
+
         private async Task Commit()
         {
             await _realEstateManagerDbContext.SaveChangesAsync();

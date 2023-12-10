@@ -43,7 +43,8 @@ namespace RealEstateManager.Controllers
         [HttpPatch("{id}")]
         public async Task<IActionResult> Patch(int id, [FromBody] ChangePriceProperty value)
         {
-            return Ok("");
+            var resultadoPatch = await _propertyServices.ChangePreciAsync(id, value);
+            return Ok(resultadoPatch);
         }
     }
 }

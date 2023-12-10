@@ -51,7 +51,7 @@ namespace RealEstateManager.UnitTest.System.Fixtures
 
             if (!context.Property.Any())
             {
-                context.Property.AddRange(PropertyFixtures.PropertyTest);
+                context.Property.AddRange(PropertyFixtures.PropertySemillaTest);
 
                 context.SaveChanges();
             }
