@@ -1,7 +1,7 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using RealEstateManager.Application.Owners;
 using RealEstateManager.Application.Owners.Interface;
+using RealEstateManager.Application.Owners.Service;
 using RealEstateManager.Application.PopertyImages.Interfaces;
 using RealEstateManager.Application.PopertyImages.Services;
 using RealEstateManager.Application.Propertys.Dto;
@@ -13,6 +13,8 @@ using RealEstateManager.Domain.Repository;
 using RealEstateManager.Infrastructure;
 using RealEstateManager.Infrastructure.FilesManager;
 using RealEstateManager.Infrastructure.Repository;
+using RealEstateManager.Middleware;
+using Serilog;
 using System.Diagnostics.CodeAnalysis;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,7 +32,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+// Add support to logging with SERILOG
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,6 +44,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseStaticFiles();
+
+//Add support to logging request with SERILOG
+app.UseSerilogRequestLogging();
+app.UseResponseTimeLogging();
+app.UseExceptionMiddleware();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

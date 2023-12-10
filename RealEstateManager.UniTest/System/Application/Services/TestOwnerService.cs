@@ -1,5 +1,5 @@
 ﻿using Moq;
-using RealEstateManager.Application.Owners;
+using RealEstateManager.Application.Owners.Service;
 using RealEstateManager.Domain.Owners;
 using RealEstateManager.Domain.Repository;
 using RealEstateManager.UnitTest.System.Fixtures;

@@ -14,11 +14,9 @@ namespace RealEstateManager.Infrastructure.Configurations
             builder.ToTable("Property");
             builder.HasKey("IdProperty");
 
-            builder.HasOne(a => a.Owner)
-             .WithMany().HasForeignKey(b => b.IdOwner);
+            builder.HasOne(a => a.Owner).WithMany().HasForeignKey(b => b.IdOwner);
 
-            builder.HasOne(a => a.PropertyType)
-            .WithMany().HasForeignKey(b => b.IdPropertyType);
+            builder.HasOne(a => a.PropertyType).WithMany().HasForeignKey(b => b.IdPropertyType);
         }
 
     }

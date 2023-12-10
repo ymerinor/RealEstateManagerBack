@@ -29,5 +29,12 @@ namespace RealEstateManager.Application.Propertys.Interfaces
         /// <param name="propertyRequestDto">Información actualizada de la propiedad.</param>
         /// <returns>La propiedad actualizada.</returns>
         Task<Property> UpdateAsync(int idPorperty, PropertyRequestDto propertyRequestDto);
+
+        /// <summary>
+        /// Obtiene una colección de propiedades aplicando filtros específicos.
+        /// </summary>
+        /// <param name="filtersQuery">Filtros de consulta para restringir los resultados.</param>
+        /// <returns>Colección de objetos PropertyDto que cumplen con los criterios de filtro.</returns>
+        Task<IEnumerable<PropertyDto>> GetWithFilters(FiltersQuery filtersQuery);
     }
 }

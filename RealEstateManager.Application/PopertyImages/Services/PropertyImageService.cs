@@ -1,4 +1,5 @@
-﻿using RealEstateManager.Application.PopertyImages.Dto;
+﻿using RealEstateManager.Application.Common.Excepciones;
+using RealEstateManager.Application.PopertyImages.Dto;
 using RealEstateManager.Application.PopertyImages.Interfaces;
 using RealEstateManager.Domain.FilesManager;
 using RealEstateManager.Domain.PropertyImages;
@@ -16,6 +17,10 @@ namespace RealEstateManager.Application.PopertyImages.Services
         private readonly IFilesManager _filesManager = filesManager;
         public async Task<PropertyImage> AddImagePropertyAsync(PropertyImageDto propertyImageDto)
         {
+            var existsProperty = await _propertyRepository.GetByIdAsync(propertyImageDto.IdProperty);
+            if (existsProperty is null)
+                throw new NoContentException($"no se encontro informacion relacionada con la propiedad id {propertyImageDto.IdProperty}");
+
             var pathfile = await _filesManager.SaveImageAsync(propertyImageDto.ImageFile);
             var propertyImage = new PropertyImage { FilePath = pathfile, IdProperty = 3, Enabled = true };
 

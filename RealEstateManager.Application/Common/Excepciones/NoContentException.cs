@@ -7,22 +7,22 @@ namespace RealEstateManager.Application.Common.Excepciones
     /// </summary>
 
     [ExcludeFromCodeCoverage]
-    public class NoFoundException : Exception
+    public class NoContentException : Exception
     {
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="NoFoundException"/> con un mensaje de error.
+        /// Inicializa una nueva instancia de la clase <see cref="NoContentException"/> con un mensaje de error.
         /// </summary>
         /// <param name="message">Mensaje de error que describe la excepción.</param>
-        public NoFoundException(string message)
+        public NoContentException(string message)
         : base(message)
         {
         }
-        public NoFoundException(string message, Exception innerException)
+        public NoContentException(string message, Exception innerException)
             : base(message, innerException)
         {
         }
 
-        public NoFoundException(string name, object key)
+        public NoContentException(string name, object key)
             : base($"Entity \"{name}\" ({key}) was not found.")
         {
         }

@@ -50,16 +50,29 @@ namespace RealEstateManager.Application.Propertys.Services
             propertyUpdate.LastModified = DateTime.Now;
             return await _propertyRepository.UpdateAsync(propertyUpdate);
         }
+
+        /// <inheritdoc/>
+        public async Task<IEnumerable<PropertyDto>> GetWithFilters(FiltersQuery filtersQuery)
+        {
+            var propertyInfomation = await _propertyRepository.GetAllAsync();
+            var listPropertyDto = propertyInfomation
+             .Where(t => (filtersQuery.IdOwner == null || t.IdOwner == filtersQuery.IdOwner)
+                         && (filtersQuery.IdPropertyType == null || t.IdPropertyType == filtersQuery.IdPropertyType)
+                         && (filtersQuery.CodeInternal == null || t.CodeInternal == filtersQuery.CodeInternal))
+             .Select(s => (PropertyDto)s)
+             .ToList();
+            return listPropertyDto;
+        }
         /// <summary>
         /// Verifica si existe un propietario dado su identificador.
         /// </summary>
         /// <param name="ownerId">Identificador del propietario.</param>
         /// <returns>El propietario si existe; de lo contrario, se lanza una excepción NotFoundException.</returns>
-        /// <exception cref="NoFoundException">En caso de no existir el owner</exception>
+        /// <exception cref="NoContentException">En caso de no existir el owner</exception>
         protected async Task<Owner> OwnerExists(int ownerId)
         {
             var ownerInfomation = await _ownerRepository.GetByIdAsync(ownerId);
-            return ownerInfomation is null ? throw new NoFoundException(nameof(Owner), ownerId) : ownerInfomation;
+            return ownerInfomation is null ? throw new NoContentException(nameof(Owner), ownerId) : ownerInfomation;
         }
 
         /// <summary>
@@ -67,12 +80,12 @@ namespace RealEstateManager.Application.Propertys.Services
         /// </summary>
         /// <param name="idProperty">Identificador de la propiedad.</param>
         /// <returns>La propiedad si existe; de lo contrario, se lanza una excepción NotFoundException.</returns>
-        /// <exception cref="NoFoundException">En caso de no existir el la propiedad</exception>
+        /// <exception cref="NoContentException">En caso de no existir el la propiedad</exception>
         protected async Task<Property> PropertyExists(int idProperty)
         {
             var properryInformation = await _propertyRepository.GetByIdAsync(idProperty);
             return properryInformation is null
-                ? throw new NoFoundException($"no se encontro informacion relacionada con la propiedad id {idProperty} que intenta modificar")
+                ? throw new NoContentException($"no se encontro informacion relacionada con la propiedad id {idProperty} que intenta modificar")
                 : properryInformation;
         }
     }

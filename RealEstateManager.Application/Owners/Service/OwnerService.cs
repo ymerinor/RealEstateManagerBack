@@ -2,7 +2,7 @@
 using RealEstateManager.Domain.Owners;
 using RealEstateManager.Domain.Repository;
 
-namespace RealEstateManager.Application.Owners
+namespace RealEstateManager.Application.Owners.Service
 {
     /// <summary>
     /// Servicio que gestiona las operaciones relacionadas con la información de propietarios.

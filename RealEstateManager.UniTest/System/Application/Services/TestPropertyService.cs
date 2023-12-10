@@ -37,7 +37,7 @@ namespace RealEstateManager.UnitTest.System.Application.Services
 
             var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
             //Act && Assert
-            Assert.ThrowsAsync<NoFoundException>(async () =>
+            Assert.ThrowsAsync<NoContentException>(async () =>
             {
                 await serviceProperty.CreateAsync(PropertyFixtures.PropertyRequestDtoTest);
             });
@@ -101,7 +101,7 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
             //Act && Assert
 
-            Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.ChangePreciAsync(2, new ChangePriceProperty { Preci = 10000 }));
+            Assert.ThrowsAsync<NoContentException>(async () => await serviceProperty.ChangePreciAsync(2, new ChangePriceProperty { Preci = 10000 }));
         }
         [Test]
         public async Task UpdateAsync_Sucess()
@@ -133,7 +133,24 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
             //Act && Assert
 
-            Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.UpdateAsync(1, PropertyFixtures.PropertyRequestDtoTest));
+            Assert.ThrowsAsync<NoContentException>(async () => await serviceProperty.UpdateAsync(1, PropertyFixtures.PropertyRequestDtoTest));
         }
+
+        [Test]
+        public async Task GetWithFilters_Sucess()
+        {
+            //Arrage
+            var mockRepository = new Mock<IPropertyRepository>();
+            var mockOwnerRepository = new Mock<IOwnerRepository>();
+            mockOwnerRepository.Setup(repositoryOwner => repositoryOwner.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(PropertyFixtures.OwnerCreateTest);
+            mockRepository.Setup(repository => repository.GetAllAsync()).ReturnsAsync(new List<Property> { PropertyFixtures.PropertyTest });
+
+            var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
+            //Act
+            var result = await serviceProperty.GetWithFilters(PropertyFixtures.FiltersQueryTest);
+            //Assert
+            Assert.That(result.Any());
+        }
+
     }
 }

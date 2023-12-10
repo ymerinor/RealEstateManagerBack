@@ -72,5 +72,15 @@ namespace RealEstateManager.Controllers
             var resultadoPut = await _propertyServices.UpdateAsync(id, value);
             return Ok(resultadoPut);
         }
+
+        [HttpPost("property/filters", Name = "getWithFilters")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult> GetWithFilters([FromForm] FiltersQuery filtersQuery)
+        {
+            var resultadoFilter = await _propertyServices.GetWithFilters(filtersQuery);
+            return Ok(resultadoFilter);
+        }
     }
 }

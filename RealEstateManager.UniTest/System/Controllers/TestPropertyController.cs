@@ -138,5 +138,17 @@ namespace RealEstateManager.UnitTest.System.Controllers
             //Assert
             Assert.IsTrue(result.StatusCode == 400);
         }
+
+        [Test]
+        public async Task Post_filtres_StatusCode200()
+        {
+            //Arrage
+            var mockPropertyProductServices = new Mock<IPropertyService>();
+            var controller = new PropertyController(mockPropertyProductServices.Object);
+            //Act
+            var result = (OkObjectResult)await controller.GetWithFilters(PropertyFixtures.FiltersQueryTest);
+            //Assert
+            Assert.IsTrue(result.StatusCode == 200);
+        }
     }
 }

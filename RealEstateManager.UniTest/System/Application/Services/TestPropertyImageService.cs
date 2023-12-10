@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Moq;
+using RealEstateManager.Application.Common.Excepciones;
 using RealEstateManager.Application.PopertyImages.Dto;
 using RealEstateManager.Application.PopertyImages.Services;
 using RealEstateManager.Domain.FilesManager;
@@ -36,6 +37,20 @@ namespace RealEstateManager.UniTest.System.Application.Services
             var result = await serviceProperty.AddImagePropertyAsync(new PropertyImageDto { IdProperty = 1, ImageFile = fileMock.Object });
             //Assert
             Assert.NotNull(result);
+        }
+
+
+        [Test]
+        public void TestPropertyImage_NotFoundProperty()
+        {
+            //Arrage
+            var fileMock = new Mock<IFormFile>();
+            _mockPropertyRepository.Setup(repositoryImagen => repositoryImagen.CreateAsync(It.IsAny<PropertyImage>())).ReturnsAsync(PropertyFixtures.PropertyImageSemilla);
+            _mockFilesManager.Setup(repositoryfiles => repositoryfiles.SaveImageAsync(It.IsAny<IFormFile>())).ReturnsAsync("D:\\StorageProperty");
+            var serviceProperty = new PropertyImageService(_mockRepository.Object, _mockPropertyRepository.Object, _mockFilesManager.Object);
+            //Act & Assert
+            Assert.ThrowsAsync<NoContentException>(async () => await serviceProperty.AddImagePropertyAsync(new PropertyImageDto { IdProperty = 1, ImageFile = fileMock.Object }));
+
         }
     }
 }

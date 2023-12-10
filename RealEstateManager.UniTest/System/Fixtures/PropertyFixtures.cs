@@ -122,6 +122,7 @@ namespace RealEstateManager.UnitTest.System.Fixtures
             IdProperty = 1,
             FilePath = "C://Nueva_Ruta",
             Enabled = true,
+
         };
 
         public static PropertyImage PropertyCreateImageSemilla => new()
@@ -129,6 +130,14 @@ namespace RealEstateManager.UnitTest.System.Fixtures
             IdProperty = 1,
             FilePath = "C://Nueva_Ruta",
             Enabled = true
+        };
+
+        public static FiltersQuery FiltersQueryTest => new()
+        {
+            CodeInternal = "COD-1234",
+            IdOwner = 1,
+            IdProperty = 1,
+            IdPropertyType = 1
         };
     }
 }
