@@ -17,5 +17,4 @@ namespace RealEstateManager.Application.PopertyImages.Dto
         /// </summary>
         public required IFormFile ImageFile { get; set; }
     }
-
 }

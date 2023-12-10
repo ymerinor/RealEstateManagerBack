@@ -26,6 +26,7 @@ CREATE TABLE  Property
   IdProperty int primary key identity(1,1),
   Name varchar(60) not null,
   Details varchar(500) not null,
+  price decimal(18,2) not null,
   CodeInternal varchar(10),
   City varchar(60),
   Country varchar(40),
@@ -45,7 +46,7 @@ CREATE TABLE  Property
 CREATE TABLE PropertyImage(
   IdPropertyImage int primary key identity(1,1),
   IdProperty int,
-  FilePaht varchar(200),
+  FilePath varchar(200) not null,
   Enabled bit default 1
   FOREIGN KEY (IdProperty) REFERENCES Property (IdProperty),
 )

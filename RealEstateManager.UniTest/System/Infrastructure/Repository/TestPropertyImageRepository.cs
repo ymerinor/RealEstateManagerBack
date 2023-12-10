@@ -23,7 +23,7 @@ namespace RealEstateManager.UniTest.System.Infrastructure.Repository
             // Arrange
             var repository = new PropertyImageRepository(context);
             // Act
-            var result = await repository.CreateAsync(PropertyFixtures.PropertyImageSemilla);
+            var result = await repository.CreateAsync(PropertyFixtures.PropertyCreateImageSemilla);
 
             // Assert
             Assert.That(result != null, Is.True);

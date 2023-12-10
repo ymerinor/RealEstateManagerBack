@@ -8,8 +8,10 @@ using RealEstateManager.Application.Propertys.Dto;
 using RealEstateManager.Application.Propertys.Interfaces;
 using RealEstateManager.Application.Propertys.Services;
 using RealEstateManager.Application.Propertys.Validations;
+using RealEstateManager.Domain.FilesManager;
 using RealEstateManager.Domain.Repository;
 using RealEstateManager.Infrastructure;
+using RealEstateManager.Infrastructure.FilesManager;
 using RealEstateManager.Infrastructure.Repository;
 using System.Diagnostics.CodeAnalysis;
 
@@ -22,6 +24,7 @@ builder.Services.AddDbContext<RealEstateManagerDbContext>(options =>
 builder.Services.AddTransient<IPropertyRepository, PropertyRepository>();
 builder.Services.AddTransient<IOwnerRepository, OwnerRepository>();
 builder.Services.AddTransient<IPropertyImageRepository, PropertyImageRepository>();
+builder.Services.AddTransient<IFilesManager, FilesManagerAdapter>();
 ConfigureServices(builder.Services);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

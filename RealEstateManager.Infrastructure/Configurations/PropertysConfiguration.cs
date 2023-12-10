@@ -18,7 +18,7 @@ namespace RealEstateManager.Infrastructure.Configurations
              .WithMany().HasForeignKey(b => b.IdOwner);
 
             builder.HasOne(a => a.PropertyType)
-          .WithMany().HasForeignKey(b => b.IdPropertyType);
+            .WithMany().HasForeignKey(b => b.IdPropertyType);
         }
 
     }

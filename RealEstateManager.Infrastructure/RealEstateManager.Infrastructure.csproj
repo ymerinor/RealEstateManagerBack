@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RealEstateManager.Application\RealEstateManager.Application.csproj" />
     <ProjectReference Include="..\RealEstateManager.Domain\RealEstateManager.Domain.csproj" />
   </ItemGroup>
 

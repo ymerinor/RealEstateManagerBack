@@ -18,7 +18,7 @@ namespace RealEstateManager.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post([FromBody] PropertyImageDto propertyImage)
+        public async Task<IActionResult> Post([FromForm] PropertyImageDto propertyImage)
         {
             var resultPropertyImage = await _propertyImageService.AddImagePropertyAsync(propertyImage);
             return Ok(resultPropertyImage);

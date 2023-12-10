@@ -5,6 +5,6 @@ namespace RealEstateManager.Application.PopertyImages.Interfaces
 {
     public interface IPropertyImageService
     {
-        Task<PropertyImage> AddImagePropertyAsync(PropertyImageDto propertyImageDto);
+        Task<PropertyImage> AddImagePropertyAsync(PropertyImageDto ImageFile);
     }
 }
