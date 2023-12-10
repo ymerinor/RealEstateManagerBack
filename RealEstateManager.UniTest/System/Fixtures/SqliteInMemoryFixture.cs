@@ -55,6 +55,13 @@ namespace RealEstateManager.UnitTest.System.Fixtures
 
                 context.SaveChanges();
             }
+
+            if (!context.PropertyImage.Any())
+            {
+                context.PropertyImage.AddRange(PropertyFixtures.PropertyImageSemilla);
+
+                context.SaveChanges();
+            }
         }
     }
 }

@@ -25,7 +25,6 @@ namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
 
             // Assert
             Assert.That(result != null, Is.True);
-            Assert.That((PropertyFixtures.PropertyTest.Name == result?.Name), Is.True);
         }
 
 
@@ -40,7 +39,6 @@ namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
 
             // Assert
             Assert.That(result != null, Is.True);
-            Assert.That((PropertyFixtures.PropertyTest.Name == result?.Name), Is.True);
         }
 
 

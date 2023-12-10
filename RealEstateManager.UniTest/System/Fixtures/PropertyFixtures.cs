@@ -134,7 +134,7 @@ namespace RealEstateManager.UnitTest.System.Fixtures
             CreateDate = DateTime.Now,
             LastModified = DateTime.Now
         };
-        public static PropertyImage PropertyImageTest => new()
+        public static PropertyImage PropertyImageSemilla => new()
         {
             IdProperty = 1,
             IdPropertyImage = 1,

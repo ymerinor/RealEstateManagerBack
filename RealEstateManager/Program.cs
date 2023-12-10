@@ -2,6 +2,8 @@ using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using RealEstateManager.Application.Owners;
 using RealEstateManager.Application.Owners.Interface;
+using RealEstateManager.Application.PopertyImages.Interfaces;
+using RealEstateManager.Application.PopertyImages.Services;
 using RealEstateManager.Application.Propertys.Dto;
 using RealEstateManager.Application.Propertys.Interfaces;
 using RealEstateManager.Application.Propertys.Services;
@@ -19,6 +21,7 @@ builder.Services.AddDbContext<RealEstateManagerDbContext>(options =>
                    options.UseSqlServer(builder.Configuration.GetConnectionString("RealEstateConnection")));
 builder.Services.AddTransient<IPropertyRepository, PropertyRepository>();
 builder.Services.AddTransient<IOwnerRepository, OwnerRepository>();
+builder.Services.AddTransient<IPropertyImageRepository, PropertyImageRepository>();
 ConfigureServices(builder.Services);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -46,6 +49,7 @@ app.Run();
 void ConfigureServices(IServiceCollection services)
 {
     services.AddTransient<IPropertyService, PropertyService>();
+    services.AddTransient<IPropertyImageService, PropertyImageService>();
     services.AddTransient<IOwnerService, OwnerService>();
     builder.Services.AddScoped<IValidator<PropertyRequestDto>, PropertyRequestValidator>();
 }
