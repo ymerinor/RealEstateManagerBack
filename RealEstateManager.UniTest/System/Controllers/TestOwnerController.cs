@@ -7,9 +7,10 @@ using RealEstateManager.UnitTest.System.Fixtures;
 
 namespace RealEstateManager.UnitTest.System.Controllers
 {
+    [TestFixture]
     public class TestOwnerController
     {
-        [Fact]
+        [Test]
         public async Task Get_Succes_StatusCode200()
         {
             //Arrage
@@ -21,7 +22,7 @@ namespace RealEstateManager.UnitTest.System.Controllers
             //Act
             var result = (OkObjectResult)await controller.Get();
             //Assert
-            Assert.True(result.StatusCode == 200);
+            Assert.That(result.StatusCode == 200);
         }
     }
 }

@@ -20,4 +20,8 @@
     <ProjectReference Include="..\RealEstateManager.Infrastructure\RealEstateManager.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="StorageProperty\" />
+  </ItemGroup>
+
 </Project>

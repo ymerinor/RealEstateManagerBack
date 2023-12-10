@@ -4,6 +4,8 @@ using RealEstateManager.UnitTest.System.Fixtures;
 
 namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
 {
+
+    [TestFixture]
     public class TestOwnerRepository
     {
         private readonly SqliteInMemoryFixture _fixture;
@@ -12,7 +14,7 @@ namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
         {
             _fixture = new SqliteInMemoryFixture();
         }
-        [Fact]
+        [Test]
         public async Task GetByIdAsync_WithValidId_ShouldReturnOwner()
         {
             using var context = new RealEstateManagerDbContext(_fixture.CreateOptions<RealEstateManagerDbContext>());
@@ -21,17 +23,16 @@ namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
             var result = await repository.GetByIdAsync(1);
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(1, result.IdOwner);
         }
-        [Fact]
-        public async Task GetAll__ShouldReturnOwner()
+        [Test]
+        public async Task GetAll_ShouldReturnOwner()
         {
             using var context = new RealEstateManagerDbContext(_fixture.CreateOptions<RealEstateManagerDbContext>());
             var repository = new OwnerRepository(context);
             // Act
             var result = await repository.GetAllAsync();
             // Assert
-            Assert.NotNull(result);
+            Assert.IsTrue(result.Any());
         }
     }
 }

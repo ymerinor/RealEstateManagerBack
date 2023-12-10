@@ -8,9 +8,10 @@ using RealEstateManager.UnitTest.System.Fixtures;
 
 namespace RealEstateManager.UnitTest.System.Application.Services
 {
+    [TestFixture]
     public class TestPropertyService
     {
-        [Fact]
+        [Test]
         public async Task CreateProperty_Sucess()
         {
             //Arrage
@@ -23,11 +24,11 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             //Act
             var result = await serviceProperty.CreateAsync(PropertyFixtures.PropertyRequestDtoTest);
             //Assert
-            Assert.Equal(result.Name, PropertyFixtures.PropertyRequestDtoTest.Name);
+            Assert.That((result.Name == PropertyFixtures.PropertyRequestDtoTest.Name));
         }
 
-        [Fact]
-        public async Task CreateProperty_NoFoundExceptionOwner()
+        [Test]
+        public void CreateProperty_NoFoundExceptionOwner()
         {
             //Arrage
             var mockRepository = new Mock<IPropertyRepository>();
@@ -36,12 +37,14 @@ namespace RealEstateManager.UnitTest.System.Application.Services
 
             var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
             //Act && Assert
-            await Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.CreateAsync(PropertyFixtures.PropertyRequestDtoTest));
+            Assert.ThrowsAsync<NoFoundException>(async () =>
+            {
+                await serviceProperty.CreateAsync(PropertyFixtures.PropertyRequestDtoTest);
+            });
 
         }
 
-
-        [Fact]
+        [Test]
         public async Task GetAllProperty_Sucess()
         {
             //Arrage
@@ -53,10 +56,10 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             //Act
             var result = await serviceProperty.GetAllAsync();
             //Assert
-            Assert.True(result.Any());
+            Assert.That(result.Any());
         }
 
-        [Fact]
+        [Test]
         public async Task GetAllPropertyEmpty_Error()
         {
             //Arrage
@@ -67,10 +70,10 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             //Act
             var result = await serviceProperty.GetAllAsync();
             //Assert
-            Assert.False(result.Any());
+            Assert.That(result.Any(), Is.False);
         }
 
-        [Fact]
+        [Test]
         public async Task ChangePreciAsync_Sucess()
         {
             //Arrage
@@ -84,11 +87,11 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             //Act
             var result = await serviceProperty.ChangePreciAsync(1, new ChangePriceProperty { Preci = 10000 });
             //Assert
-            Assert.NotNull(result);
+            Assert.That(result != null, Is.True);
         }
 
-        [Fact]
-        public async Task ChangePreciAsync_EmptyProperty()
+        [Test]
+        public void ChangePreciAsync_EmptyProperty()
         {
             //Arrage
             var mockRepository = new Mock<IPropertyRepository>();
@@ -98,9 +101,9 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
             //Act && Assert
 
-            await Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.ChangePreciAsync(2, new ChangePriceProperty { Preci = 10000 }));
+            Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.ChangePreciAsync(2, new ChangePriceProperty { Preci = 10000 }));
         }
-        [Fact]
+        [Test]
         public async Task UpdateAsync_Sucess()
         {
             //Arrage
@@ -115,10 +118,10 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             //Act
             var result = await serviceProperty.UpdateAsync(1, PropertyFixtures.PropertyRequestDtoTest);
             //Assert
-            Assert.NotNull(result);
+            Assert.That(result != null, Is.True);
         }
-        [Fact]
-        public async Task UpdateAsync_NoExistsProperty()
+        [Test]
+        public void UpdateAsync_NoExistsProperty()
         {
             //Arrage
             var mockRepository = new Mock<IPropertyRepository>();
@@ -128,10 +131,9 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             mockRepository.Setup(repository => repository.UpdateAsync(It.IsAny<Property>())).ReturnsAsync(PropertyFixtures.PropertyTest);
 
             var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
-            //Assert
             //Act && Assert
 
-            await Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.UpdateAsync(1, PropertyFixtures.PropertyRequestDtoTest));
+            Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.UpdateAsync(1, PropertyFixtures.PropertyRequestDtoTest));
         }
     }
 }

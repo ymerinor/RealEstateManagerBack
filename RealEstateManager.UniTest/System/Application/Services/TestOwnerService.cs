@@ -6,36 +6,44 @@ using RealEstateManager.UnitTest.System.Fixtures;
 
 namespace RealEstateManager.UnitTest.System.Application.Services
 {
+    [TestFixture]
+    [Category("UnitTest")]
     public class TestOwnerService
     {
-        [Fact]
+        private Mock<IOwnerRepository> _mockRepository;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _mockRepository = new Mock<IOwnerRepository>();
+        }
+
+        [Test]
         public async Task GetOwnerById_ExistsProduct()
         {
             //Arrage
-            var mockRepository = new Mock<IOwnerRepository>();
-            mockRepository
+            _mockRepository
                 .Setup(repository => repository.GetByIdAsync(It.IsAny<int>()))
                 .ReturnsAsync(PropertyFixtures.OwnerCreateTest);
-            var serviceProduct = new OwnerService(mockRepository.Object);
+            var serviceProduct = new OwnerService(_mockRepository.Object);
             //Act
             var result = await serviceProduct.GetByIdAsync(1);
             //Assert
-            Assert.NotNull(result);
+            Assert.That(result != null, Is.True);
         }
 
-        [Fact]
+        [Test]
         public async Task GetAll_Product()
         {
             //Arrage
-            var mockRepository = new Mock<IOwnerRepository>();
-            mockRepository
+            _mockRepository
                 .Setup(repository => repository.GetAllAsync())
                 .ReturnsAsync(new List<Owner> { PropertyFixtures.OwnerCreateTest });
-            var serviceProduct = new OwnerService(mockRepository.Object);
+            var serviceProduct = new OwnerService(_mockRepository.Object);
             //Act
             var result = await serviceProduct.GetAllAsync();
             //Assert
-            Assert.True(result.Any());
+            Assert.That(result.Any());
         }
     }
 }

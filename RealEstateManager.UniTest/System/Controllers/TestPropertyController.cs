@@ -6,9 +6,10 @@ using RealEstateManager.Controllers;
 using RealEstateManager.UnitTest.System.Fixtures;
 namespace RealEstateManager.UnitTest.System.Controllers
 {
+    [TestFixture]
     public class TestPropertyController
     {
-        [Fact]
+        [Test]
         public async Task Post_Succes_StatusCode200()
         {
             //Arrage
@@ -17,10 +18,10 @@ namespace RealEstateManager.UnitTest.System.Controllers
             //Act
             var result = (OkObjectResult)await controller.Post(PropertyFixtures.PropertyRequestDtoTest);
             //Assert
-            Assert.True(result.StatusCode == 200);
+            Assert.IsTrue(result.StatusCode == 200);
         }
 
-        [Fact]
+        [Test]
         public async Task Post_Succes_InvokeServiceOnce()
         {
             //Arrage
@@ -35,7 +36,7 @@ namespace RealEstateManager.UnitTest.System.Controllers
             service => service.CreateAsync(It.IsAny<PropertyRequestDto>()), Times.Once());
         }
 
-        [Fact]
+        [Test]
         public async Task Post_Succes_StatusCode400()
         {
             //Arrage
@@ -44,10 +45,10 @@ namespace RealEstateManager.UnitTest.System.Controllers
             //Act
             var result = (BadRequestObjectResult)await controller.Post(PropertyFixtures.PropertyRequestBadRequestDtoTest);
             //Assert
-            Assert.True(result.StatusCode == 400);
+            Assert.IsTrue(result.StatusCode == 400);
         }
 
-        [Fact]
+        [Test]
         public async Task Get_Succes_StatusCode200()
         {
             //Arrage
@@ -56,10 +57,10 @@ namespace RealEstateManager.UnitTest.System.Controllers
             //Act
             var result = (OkObjectResult)await controller.Get();
             //Assert
-            Assert.True(result.StatusCode == 200);
+            Assert.IsTrue(result.StatusCode == 200);
         }
 
-        [Fact]
+        [Test]
         public async Task Get_Succes_InvokeServiceOnce()
         {
             //Arrage
@@ -73,7 +74,7 @@ namespace RealEstateManager.UnitTest.System.Controllers
             mockPropertyServices.Verify(service => service.GetAllAsync());
         }
 
-        [Fact]
+        [Test]
         public async Task Patch_Succes_StatusCode200()
         {
             //Arrage
@@ -82,10 +83,10 @@ namespace RealEstateManager.UnitTest.System.Controllers
             //Act
             var result = (OkObjectResult)await controller.Patch(1, new ChangePriceProperty { Preci = 1000 });
             //Assert
-            Assert.True(result.StatusCode == 200);
+            Assert.IsTrue(result.StatusCode == 200);
         }
 
-        [Fact]
+        [Test]
         public async Task Patch_Succes_InvokeServiceOnce()
         {
             //Arrage
@@ -99,7 +100,7 @@ namespace RealEstateManager.UnitTest.System.Controllers
             mockPropertyServices.Verify(
             service => service.ChangePreciAsync(It.IsAny<int>(), It.IsAny<ChangePriceProperty>()), Times.Once());
         }
-        [Fact]
+        [Test]
         public async Task Put_Succes_StatusCode200()
         {
             //Arrage
@@ -108,10 +109,10 @@ namespace RealEstateManager.UnitTest.System.Controllers
             //Act
             var result = (OkObjectResult)await controller.Put(1, PropertyFixtures.PropertyRequestDtoTest);
             //Assert
-            Assert.True(result.StatusCode == 200);
+            Assert.IsTrue(result.StatusCode == 200);
         }
 
-        [Fact]
+        [Test]
         public async Task Put_Succes_InvokeServiceOnce()
         {
             //Arrage

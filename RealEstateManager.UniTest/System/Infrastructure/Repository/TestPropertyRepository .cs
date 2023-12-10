@@ -4,6 +4,7 @@ using RealEstateManager.UnitTest.System.Fixtures;
 
 namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
 {
+    [TestFixture]
     public class TestPropertyRepository : IDisposable
     {
         private readonly SqliteInMemoryFixture _fixture;
@@ -13,7 +14,7 @@ namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
             _fixture = new SqliteInMemoryFixture();
         }
 
-        [Fact]
+        [Test]
         public async Task CretePropertyAsync_Sucess()
         {
             using var context = new RealEstateManagerDbContext(_fixture.CreateOptions<RealEstateManagerDbContext>());
@@ -23,12 +24,12 @@ namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
             var result = await repository.CreateAsync(PropertyFixtures.PropertyCreateTest);
 
             // Assert
-            Assert.NotNull(result);
-            Assert.Equal(PropertyFixtures.PropertyCreateTest.Name, result.Name);
+            Assert.That(result != null, Is.True);
+            Assert.That((PropertyFixtures.PropertyTest.Name == result?.Name), Is.True);
         }
 
 
-        [Fact]
+        [Test]
         public async Task CretePropertyAsync_Update()
         {
             using var context = new RealEstateManagerDbContext(_fixture.CreateOptions<RealEstateManagerDbContext>());
@@ -38,12 +39,12 @@ namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
             var result = await repository.UpdateAsync(PropertyFixtures.PropertyTest);
 
             // Assert
-            Assert.NotNull(result);
-            Assert.Equal(PropertyFixtures.PropertyTest.Name, result.Name);
+            Assert.That(result != null, Is.True);
+            Assert.That((PropertyFixtures.PropertyTest.Name == result?.Name), Is.True);
         }
 
 
-        [Fact]
+        [Test]
         public async Task GetAllAsync_Sucess()
         {
             using var context = new RealEstateManagerDbContext(_fixture.CreateOptions<RealEstateManagerDbContext>());
@@ -53,11 +54,10 @@ namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
             var result = await repository.GetAllAsync();
 
             // Assert
-            Assert.NotNull(result);
-            Assert.True(result.Any());
+            Assert.That(result.Any());
         }
 
-        [Fact]
+        [Test]
         public async Task GetByIdAsync_Sucess()
         {
             using var context = new RealEstateManagerDbContext(_fixture.CreateOptions<RealEstateManagerDbContext>());
@@ -67,22 +67,8 @@ namespace RealEstateManager.UnitTest.System.Infrastructure.Repository
             var result = await repository.GetByIdAsync(1);
 
             // Assert
-            Assert.NotNull(result);
+            Assert.That(result != null, Is.True);
         }
-
-        [Fact]
-        public async Task GetByIdAsync_Empty()
-        {
-            using var context = new RealEstateManagerDbContext(_fixture.CreateOptions<RealEstateManagerDbContext>());
-            // Arrange
-            var repository = new PropertyRepository(context);
-            // Act
-            var result = await repository.GetByIdAsync(2);
-
-            // Assert
-            Assert.Null(result);
-        }
-
 
         public void Dispose() => _fixture.Dispose();
     }

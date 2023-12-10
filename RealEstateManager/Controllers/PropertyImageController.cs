@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RealEstateManager.Application.Owners.Interface;
+using RealEstateManager.Application.PopertyImages.Dto;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -7,19 +8,19 @@ namespace RealEstateManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OwnerController(IOwnerService ownerService) : ControllerBase
+    public class PropertyImageController() : ControllerBase
     {
-        private readonly IOwnerService _ownerService = ownerService;
 
-        // GET api/<OwnerController>
-        [HttpGet]
+
+        // POST api/<PropertyImageController>
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> Get()
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Post([FromBody] PropertyImageDto propertyImage)
         {
-            var result = await _ownerService.GetAllAsync();
-            return Ok(result);
+            return Ok("");
         }
     }
 }
