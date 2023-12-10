@@ -46,5 +46,13 @@ namespace RealEstateManager.Controllers
             var resultadoPatch = await _propertyServices.ChangePreciAsync(id, value);
             return Ok(resultadoPatch);
         }
+
+        // Put api/<PropertyController>/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] PropertyRequestDto value)
+        {
+            var resultadoPut = await _propertyServices.UpdateAsync(id, value);
+            return Ok(resultadoPut);
+        }
     }
 }

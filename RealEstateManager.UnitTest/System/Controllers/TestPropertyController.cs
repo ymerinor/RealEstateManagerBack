@@ -99,6 +99,32 @@ namespace RealEstateManager.UnitTest.System.Controllers
             mockPropertyServices.Verify(
             service => service.ChangePreciAsync(It.IsAny<int>(), It.IsAny<ChangePriceProperty>()), Times.Once());
         }
+        [Fact]
+        public async Task Put_Succes_StatusCode200()
+        {
+            //Arrage
+            var mockPropertyProductServices = new Mock<IPropertyService>();
+            var controller = new PropertyController(mockPropertyProductServices.Object);
+            //Act
+            var result = (OkObjectResult)await controller.Put(1, PropertyFixtures.PropertyRequestDtoTest);
+            //Assert
+            Assert.True(result.StatusCode == 200);
+        }
+
+        [Fact]
+        public async Task Put_Succes_InvokeServiceOnce()
+        {
+            //Arrage
+            var mockPropertyServices = new Mock<IPropertyService>();
+            mockPropertyServices.Setup(service => service.UpdateAsync(It.IsAny<int>(), It.IsAny<PropertyRequestDto>()))
+                .ReturnsAsync(PropertyFixtures.PropertyTest);
+            var controller = new PropertyController(mockPropertyServices.Object);
+            //Act
+            await controller.Put(1, PropertyFixtures.PropertyRequestDtoTest);
+            //Assert
+            mockPropertyServices.Verify(
+            service => service.UpdateAsync(It.IsAny<int>(), It.IsAny<PropertyRequestDto>()), Times.Once());
+        }
 
     }
 }

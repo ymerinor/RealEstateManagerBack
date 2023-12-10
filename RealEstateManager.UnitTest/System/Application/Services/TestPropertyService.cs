@@ -70,7 +70,6 @@ namespace RealEstateManager.UnitTest.System.Application.Services
             Assert.False(result.Any());
         }
 
-
         [Fact]
         public async Task ChangePreciAsync_Sucess()
         {
@@ -98,7 +97,41 @@ namespace RealEstateManager.UnitTest.System.Application.Services
 
             var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
             //Act && Assert
-            await Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.ChangePreciAsync(1, new ChangePriceProperty { Preci = 10000 }));
+
+            await Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.ChangePreciAsync(2, new ChangePriceProperty { Preci = 10000 }));
+        }
+        [Fact]
+        public async Task UpdateAsync_Sucess()
+        {
+            //Arrage
+            var mockRepository = new Mock<IPropertyRepository>();
+            var mockOwnerRepository = new Mock<IOwnerRepository>();
+
+            mockOwnerRepository.Setup(repositoryOwner => repositoryOwner.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(PropertyFixtures.OwnerCreateTest);
+            mockRepository.Setup(repository => repository.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(PropertyFixtures.PropertyTest);
+            mockRepository.Setup(repository => repository.UpdateAsync(It.IsAny<Property>())).ReturnsAsync(PropertyFixtures.PropertyTest);
+
+            var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
+            //Act
+            var result = await serviceProperty.UpdateAsync(1, PropertyFixtures.PropertyRequestDtoTest);
+            //Assert
+            Assert.NotNull(result);
+        }
+        [Fact]
+        public async Task UpdateAsync_NoExistsProperty()
+        {
+            //Arrage
+            var mockRepository = new Mock<IPropertyRepository>();
+            var mockOwnerRepository = new Mock<IOwnerRepository>();
+
+            mockOwnerRepository.Setup(repositoryOwner => repositoryOwner.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(PropertyFixtures.OwnerCreateTest);
+            mockRepository.Setup(repository => repository.UpdateAsync(It.IsAny<Property>())).ReturnsAsync(PropertyFixtures.PropertyTest);
+
+            var serviceProperty = new PropertyService(mockRepository.Object, mockOwnerRepository.Object);
+            //Assert
+            //Act && Assert
+
+            await Assert.ThrowsAsync<NoFoundException>(async () => await serviceProperty.UpdateAsync(1, PropertyFixtures.PropertyRequestDtoTest));
         }
     }
 }

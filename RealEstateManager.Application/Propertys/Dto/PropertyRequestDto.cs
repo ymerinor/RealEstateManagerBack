@@ -97,9 +97,7 @@ namespace RealEstateManager.Application.Propertys.Dto
                 Year = requestDto.Year,
                 IdOwner = requestDto.IdOwner,
                 IdPropertyType = requestDto.PropertyType,
-                CreateDate = DateTime.Now,
                 Status = requestDto.Status.ToString(), // Convertir el enum a string
-
             };
         }
     }
