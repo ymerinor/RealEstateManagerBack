@@ -56,7 +56,8 @@ namespace RealEstateManager.Application.Propertys.Services
         {
             var propertyInfomation = await _propertyRepository.GetAllAsync();
             var listPropertyDto = propertyInfomation
-             .Where(t => (filtersQuery.IdOwner == null || t.IdOwner == filtersQuery.IdOwner)
+             .Where(t => (filtersQuery.IdProperty == null || t.IdProperty == filtersQuery.IdProperty)
+                         && (filtersQuery.IdOwner == null || t.IdOwner == filtersQuery.IdOwner)
                          && (filtersQuery.IdPropertyType == null || t.IdPropertyType == filtersQuery.IdPropertyType)
                          && (filtersQuery.CodeInternal == null || t.CodeInternal == filtersQuery.CodeInternal))
              .Select(s => (PropertyDto)s)
