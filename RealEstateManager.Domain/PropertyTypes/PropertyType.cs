@@ -29,7 +29,7 @@
         /// <summary>
         /// Obtiene o establece la fecha de la última modificación del tipo de propiedad.
         /// </summary>
-        public DateTime LastModified { get; set; }
+        public DateTime? LastModified { get; set; }
     }
 
 }
