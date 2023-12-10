@@ -80,12 +80,12 @@ namespace RealEstateManager.Domain.Propertys
         /// <summary>
         /// Obtiene o establece la fecha de creación de la propiedad.
         /// </summary>
-        public DateTime CreateDate { get; set; } = DateTime.Now;
+        public DateTime CreateDate { get; set; }
 
         /// <summary>
         /// Obtiene o establece la fecha de la última modificación de la propiedad.
         /// </summary>
-        public DateTime LastModified { get; set; }
+        public DateTime? LastModified { get; set; }
 
         /// <summary>
         /// Obtiene o establece el estado de la propiedad.

@@ -5,6 +5,6 @@ namespace RealEstateManager.Domain.Repository
     public interface IOwnerRepository
     {
         Task<IEnumerable<Owner>> GetAllAsync();
-        Task<Owner> GetByIdAsync(int idOwner);
+        Task<Owner?> GetByIdAsync(int idOwner);
     }
 }

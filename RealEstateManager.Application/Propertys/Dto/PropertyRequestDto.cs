@@ -100,5 +100,28 @@ namespace RealEstateManager.Application.Propertys.Dto
                 Status = requestDto.Status.ToString(), // Convertir el enum a string
             };
         }
+        /// <summary>
+        /// Convierte un objeto PropertyRequestDto a un objeto Property, aplicando las actualizaciones correspondientes.
+        /// </summary>
+        /// <param name="requestDto">Objeto PropertyRequestDto con la información de actualización.</param>
+        /// <param name="property">Objeto Property que se actualizará con la información proporcionada en el PropertyRequestDto.</param>
+        /// <returns>El objeto Property actualizado.</returns>
+        public static Property PropertyDtoToProperty(PropertyRequestDto requestDto, Property property)
+        {
+            property.Name = requestDto.Name;
+            property.Details = requestDto.Details;
+            property.CodeInternal = requestDto.CodeInternal;
+            property.City = requestDto.City;
+            property.Country = requestDto.Country;
+            property.Price = requestDto.Price;
+            property.Address = requestDto.Address;
+            property.Bedrooms = requestDto.Bedrooms;
+            property.Bathrooms = requestDto.Bathrooms;
+            property.Year = requestDto.Year;
+            property.IdOwner = requestDto.IdOwner;
+            property.IdPropertyType = requestDto.PropertyType;
+            property.Status = requestDto.Status.ToString(); // Convertir el enum a string
+            return property;
+        }
     }
 }

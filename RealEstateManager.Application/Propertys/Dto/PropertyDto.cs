@@ -89,13 +89,18 @@ namespace RealEstateManager.Application.Propertys.Dto
         /// <summary>
         /// Obtiene o establece la fecha de la última modificación de la propiedad.
         /// </summary>
-        public DateTime LastModified { get; set; }
+        public DateTime? LastModified { get; set; }
 
         /// <summary>
         /// Obtiene o establece el estado de la propiedad.
         /// </summary>
         public string Status { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Convierte un objeto Property a un objeto PropertyDto de forma implícita.
+        /// </summary>
+        /// <param name="property">Objeto Property que se va a convertir a PropertyDto.</param>
+        /// <returns>Un nuevo objeto PropertyDto con la información de la propiedad.</returns>
 
         public static implicit operator PropertyDto(Property property)
         {

@@ -13,7 +13,7 @@ namespace RealEstateManager.Infrastructure.Repository
             return await _realEstateManagerDbContext.Owner.ToListAsync();
         }
 
-        public async Task<Owner> GetByIdAsync(int idOwner)
+        public async Task<Owner?> GetByIdAsync(int idOwner)
         {
             return await _realEstateManagerDbContext.Owner.FirstOrDefaultAsync(t => t.IdOwner == idOwner);
         }

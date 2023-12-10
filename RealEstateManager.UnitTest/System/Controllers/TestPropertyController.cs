@@ -91,7 +91,7 @@ namespace RealEstateManager.UnitTest.System.Controllers
             //Arrage
             var mockPropertyServices = new Mock<IPropertyService>();
             mockPropertyServices.Setup(service => service.ChangePreciAsync(It.IsAny<int>(), It.IsAny<ChangePriceProperty>()))
-                .ReturnsAsync(PropertyFixtures.PropertyDto);
+                .ReturnsAsync(PropertyFixtures.PropertyTest);
             var controller = new PropertyController(mockPropertyServices.Object);
             //Act
             await controller.Patch(1, new ChangePriceProperty { Preci = 1000 });
