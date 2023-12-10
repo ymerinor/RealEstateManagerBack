@@ -64,9 +64,9 @@ CREATE TABLE PropertyTrace(
 )
 --Infomacion semilla para base de datos.
 GO
-INSERT INTO Owner (Name,Address,City,Country,Phone) VALUES('Juan Lopez','Calle 35 via a la playa', 'Bogota','Colombia','+5734567890',GETDATE())
+INSERT INTO Owner (Name,Address,City,Country,Phone,Birthday) VALUES('Juan Lopez','Calle 35 via a la playa', 'Bogota','Colombia','+5734567890',GETDATE())
 GO
-INSERT INTO Owner (Name,Address,City,Country,Phone) VALUES('Jose Restrepo','Via Beach Miami', 'Miami','Estados Unidos','+5134567890',GETDATE())
+INSERT INTO Owner (Name,Address,City,Country,Phone,Birthday) VALUES('Jose Restrepo','Via Beach Miami', 'Miami','Estados Unidos','+5134567890',GETDATE())
 GO
 INSERT INTO PropertyType (Name,Enabled,CreateDate) VALUES ('Residencial',1,GETDATE())
 GO
