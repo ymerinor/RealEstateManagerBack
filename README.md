@@ -30,7 +30,7 @@ Antes de ejecutar la aplicación, decida en qué ubicación local desea almacena
 
 Abra el archivo `appsettings.json` en la raíz del proyecto y busque la propiedad `PathFileTarget`. Ajuste el valor de esta propiedad con la ruta completa de la carpeta que ha decidido en el paso anterior. Por ejemplo:
 
-```json
+```plaintext
 {
   "PathFileTarget": "D:\\StorageProperty",
   // Otras configuraciones...
@@ -44,7 +44,7 @@ El proyecto está diseñado con TDD. Puedes ejecutar las pruebas utilizando tu e
 Para validar los logs generados por la aplicación, puedes acceder a la ruta dentro del contenedor Docker donde se almacenan los logs. La ubicación predeterminada es:
 
 ```plaintext
-/app/Logs/
+/Logs/
 ```
 ## Nota
 Para ejecutar el proyecto se deja un usuario por defecto y poder obtener el token de acceso: Usuario: yeinermeri@gmail.com -- > Password: 0123456789, este es el unico usuario parametrizado.
