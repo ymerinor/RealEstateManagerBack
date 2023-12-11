@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
+using RealEstateManager.Api.Controllers;
 using RealEstateManager.Application.Propertys.Dto;
 using RealEstateManager.Application.Propertys.Interfaces;
-using RealEstateManager.Controllers;
 using RealEstateManager.UnitTest.System.Fixtures;
 namespace RealEstateManager.UnitTest.System.Controllers
 {

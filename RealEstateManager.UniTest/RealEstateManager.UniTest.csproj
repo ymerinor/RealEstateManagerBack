@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RealEstateManager.Api\RealEstateManager.Api.csproj" />
     <ProjectReference Include="..\RealEstateManager.Application\RealEstateManager.Application.csproj" />
     <ProjectReference Include="..\RealEstateManager.Infrastructure\RealEstateManager.Infrastructure.csproj" />
-    <ProjectReference Include="..\RealEstateManager\RealEstateManager.csproj" />
   </ItemGroup>
 
 </Project>

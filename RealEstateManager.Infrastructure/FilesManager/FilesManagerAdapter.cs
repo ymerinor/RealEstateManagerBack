@@ -14,34 +14,25 @@ namespace RealEstateManager.Infrastructure.FilesManager
         private readonly string? storagePath = configuration["PathFileTarget"];
 
         /// <inheritdoc/>
-        public string SaveImageAsync(IFormFile formFile)
+        public async Task<string> SaveImageAsync(IFormFile formFile)
         {
-            try
+            if (!Directory.Exists(storagePath))
             {
-                // Verificar si el directorio de almacenamiento existe, si no, créalo
-                if (!Directory.Exists(storagePath))
-                {
-                    Directory.CreateDirectory(storagePath);
-                }
-                var fileName = $"{Guid.NewGuid()}-{formFile.FileName}";
-
-                var pathImage = Path.Combine(storagePath, fileName);
-
-                if (File.Exists(pathImage))
-                {
-                    throw new InvalidOperationException("Ya existe un archivo con el mismo nombre.");
-                }
-                using (var stream = new FileStream(pathImage, FileMode.Create))
-                {
-                    formFile.CopyTo(stream);
-                }
-                return pathImage;
+                Directory.CreateDirectory(storagePath);
             }
-            catch (Exception ex)
+            var fileName = $"{Guid.NewGuid()}-{formFile.FileName}";
+
+            var pathImage = Path.Combine(storagePath, fileName);
+
+            if (File.Exists(pathImage))
             {
-                Console.WriteLine(ex);
-                throw;
+                throw new InvalidOperationException("Ya existe un archivo con el mismo nombre.");
             }
+            using (var stream = new FileStream(pathImage, FileMode.Create))
+            {
+                await formFile.CopyToAsync(stream);
+            }
+            return pathImage;
 
         }
     }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using RealEstateManager.Api.Controllers;
 using RealEstateManager.Application.PopertyImages.Dto;
 using RealEstateManager.Application.PopertyImages.Interfaces;
-using RealEstateManager.Controllers;
 using RealEstateManager.UnitTest.System.Fixtures;
 
 namespace RealEstateManager.UnitTest.System.Controllers

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
+using RealEstateManager.Api.Controllers;
 using RealEstateManager.Application.Owners.Interface;
-using RealEstateManager.Controllers;
 using RealEstateManager.Domain.Owners;
 using RealEstateManager.UnitTest.System.Fixtures;
 

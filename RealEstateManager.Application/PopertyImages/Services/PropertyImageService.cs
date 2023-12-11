@@ -33,7 +33,7 @@ namespace RealEstateManager.Application.PopertyImages.Services
             if (existsProperty is null)
                 throw new NoContentException($"No se encontró información relacionada con la propiedad ID {propertyImageDto.IdProperty}");
 
-            var pathfile = _filesManager.SaveImageAsync(propertyImageDto.ImageFile);
+            var pathfile = await _filesManager.SaveImageAsync(propertyImageDto.ImageFile);
             var propertyImage = new PropertyImage { FilePath = pathfile, IdProperty = existsProperty.IdProperty, Enabled = true };
             var propertyImageUpload = await _propertyImageRepository.CreateAsync(propertyImage);
             return (PropertyImageOut)propertyImageUpload;

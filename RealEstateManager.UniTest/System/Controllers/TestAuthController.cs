@@ -1,6 +1,7 @@
 ﻿using Moq;
+using RealEstateManager.Api.Controllers;
 using RealEstateManager.Application.Authenication;
-using RealEstateManager.Controllers;
+
 using RealEstateManager.UnitTest.System.Fixtures;
 
 namespace RealEstateManager.UniTest.System.Controllers
