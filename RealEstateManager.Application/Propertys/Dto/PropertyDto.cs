@@ -96,6 +96,8 @@ namespace RealEstateManager.Application.Propertys.Dto
         /// </summary>
         public string Status { get; set; } = string.Empty;
 
+        public string? PropertyImages { get; set; }
+
         /// <summary>
         /// Convierte un objeto Property a un objeto PropertyDto de forma implícita.
         /// </summary>
@@ -124,6 +126,7 @@ namespace RealEstateManager.Application.Propertys.Dto
                 Status = property.Status,
                 CreateDate = property.CreateDate,
                 LastModified = property.LastModified,
+                PropertyImages = property.PropertyImages.OrderByDescending(t => t.IdPropertyImage).FirstOrDefault()?.FilePath
             };
         }
     }

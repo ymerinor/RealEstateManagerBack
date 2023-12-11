@@ -17,7 +17,9 @@ namespace RealEstateManager.Infrastructure.Repository
 
         public async Task<IEnumerable<Property>> GetAllAsync()
         {
-            return await _realEstateManagerDbContext.Property.Include(t => t.Owner).Include(p => p.PropertyType).ToListAsync();
+            return await _realEstateManagerDbContext.Property.Include(t => t.Owner)
+                .Include(p => p.PropertyType)
+                .Include(t => t.PropertyImages).ToListAsync();
         }
 
         public async Task<Property?> GetByIdAsync(int idProperty)
