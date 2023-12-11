@@ -17,7 +17,7 @@ Asegúrate de tener instalados los siguientes requisitos previos:
     ```
 3. Después de iniciar la base de datos, ejecuta el archivo `init-db.sql` en tu herramienta de administración de SQL para crear la base de datos y la tabla necesaria. para efectos de pruebas se crear algunos regisros en las tablas de  : PropertyType y Owner.
 ## Uso de la API
-La API estará disponible en la URL [http://localhost:puerto](http://localhost:puerto), donde "puerto" es el puerto que hayas configurado en tu archivo `docker-compose.yml`.
+La API estará disponible en la URL [http://localhost:puerto](http://localhost:puerto), donde "puerto" es el puerto que hayas configurado.
 # Configuración de la Ruta de Almacenamiento de Archivos
 
 La aplicación RealEstateManager permite almacenar archivos, como imágenes, en una ubicación específica del sistema de archivos. Siga los siguientes pasos para configurar la ruta de almacenamiento de archivos:
@@ -31,10 +31,7 @@ Antes de ejecutar la aplicación, decida en qué ubicación local desea almacena
 Abra el archivo `appsettings.json` en la raíz del proyecto y busque la propiedad `PathFileTarget`. Ajuste el valor de esta propiedad con la ruta completa de la carpeta que ha decidido en el paso anterior. Por ejemplo:
 
 ```plaintext
-{
   "PathFileTarget": "D:\\StorageProperty",
-  // Otras configuraciones...
-}
 ```
 ## Ejecutar Pruebas
 El proyecto está diseñado con TDD. Puedes ejecutar las pruebas utilizando tu entorno de desarrollo preferido.
