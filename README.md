@@ -41,10 +41,10 @@ El proyecto está diseñado con TDD. Puedes ejecutar las pruebas utilizando tu e
 
 ## Validación de Logs
 
-Para validar los logs generados por la aplicación, puedes acceder a la ruta dentro del contenedor Docker donde se almacenan los logs. La ubicación predeterminada es:
+Para validar los logs generados por la aplicación, puedes acceder a la ruta de los dentro de la aplicacion. La ubicación predeterminada es:
 
 ```plaintext
-/Logs/
+Logs/
 ```
 ## Nota
 Para ejecutar el proyecto se deja un usuario por defecto y poder obtener el token de acceso: Usuario: yeinermeri@gmail.com -- > Password: 0123456789, este es el unico usuario parametrizado.
