@@ -7,24 +7,36 @@ using RealEstateManager.Domain.Repository;
 
 namespace RealEstateManager.Application.PopertyImages.Services
 {
-    public class PropertyImageService(IPropertyRepository propertyRepository,
-        IPropertyImageRepository propertyImageRepository, IFilesManager filesManager) : IPropertyImageService
+    /// <summary>
+    /// Servicio encargado de gestionar las imágenes asociadas a propiedades.
+    /// </summary>
+    /// <remarks>
+    /// Constructor de la clase <see cref="PropertyImageService"/>.
+    /// </remarks>
+    /// <param name="propertyRepository">Repositorio de propiedades.</param>
+    /// <param name="propertyImageRepository">Repositorio de imágenes de propiedades.</param>
+    /// <param name="filesManager">Gestor de archivos.</param>
+    public class PropertyImageService(
+        IPropertyRepository propertyRepository,
+        IPropertyImageRepository propertyImageRepository,
+        IFilesManager filesManager) : IPropertyImageService
     {
-        private readonly IPropertyRepository _propertyRepository = propertyRepository;
+        private readonly IPropertyRepository _propertyRepository = propertyRepository ?? throw new ArgumentNullException(nameof(propertyRepository));
+        private readonly IPropertyImageRepository _propertyImageRepository = propertyImageRepository ?? throw new ArgumentNullException(nameof(propertyImageRepository));
+        private readonly IFilesManager _filesManager = filesManager ?? throw new ArgumentNullException(nameof(filesManager));
 
-        private readonly IPropertyImageRepository _propertyImageRepository = propertyImageRepository;
-
-        private readonly IFilesManager _filesManager = filesManager;
+        /// <inheritdoc/>
         public async Task<PropertyImage> AddImagePropertyAsync(PropertyImageDto propertyImageDto)
         {
+            // Verificar si la propiedad existe
             var existsProperty = await _propertyRepository.GetByIdAsync(propertyImageDto.IdProperty);
             if (existsProperty is null)
-                throw new NoContentException($"no se encontro informacion relacionada con la propiedad id {propertyImageDto.IdProperty}");
+                throw new NoContentException($"No se encontró información relacionada con la propiedad ID {propertyImageDto.IdProperty}");
 
             var pathfile = await _filesManager.SaveImageAsync(propertyImageDto.ImageFile);
-            var propertyImage = new PropertyImage { FilePath = pathfile, IdProperty = 3, Enabled = true };
-
+            var propertyImage = new PropertyImage { FilePath = pathfile, IdProperty = existsProperty.IdProperty, Enabled = true };
             return await _propertyImageRepository.CreateAsync(propertyImage);
         }
     }
+
 }

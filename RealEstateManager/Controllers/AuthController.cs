@@ -18,7 +18,7 @@ namespace RealEstateManager.Controllers
         /// <summary>
         /// Iniciar sesion
         /// </summary>
-        /// <param name="user">Usuario con Coreo y clave validos</param>
+        /// <param name="user">Usuario con Correo y clave validos</param>
         /// <remarks>
         ///    POST /login
         ///    {"email": "yeinermeri@gmail.com","password": "0123456789"}
