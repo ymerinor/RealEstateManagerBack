@@ -30,3 +30,5 @@ Para validar los logs generados por la aplicación, puedes acceder a la ruta den
 ```plaintext
 /app/Logs/
 ```
+## Nota
+Para ejecutar el proyecto se deja un usuario por defecto y poder obtener el token de acceso: Usuario: yeinermeri@gmail.com -- > Password: 0123456789, este es el unico usuario parametrizado.
