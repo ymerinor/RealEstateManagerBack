@@ -1,4 +1,5 @@
-﻿using RealEstateManager.Application.Common;
+﻿using RealEstateManager.Application.Authenication.Dto;
+using RealEstateManager.Application.Common;
 using RealEstateManager.Application.Propertys.Dto;
 using RealEstateManager.Domain.Owners;
 using RealEstateManager.Domain.PropertyImages;
@@ -138,6 +139,12 @@ namespace RealEstateManager.UnitTest.System.Fixtures
             IdOwner = 1,
             IdProperty = 1,
             IdPropertyType = 1
+        };
+
+        public static UserLoginDto TestLogin => new()
+        {
+            Email = "yeinermeri@gmail.com",
+            Password = "0123456789"
         };
     }
 }

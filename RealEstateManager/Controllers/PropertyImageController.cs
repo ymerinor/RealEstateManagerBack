@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RealEstateManager.Application.PopertyImages.Dto;
 using RealEstateManager.Application.PopertyImages.Interfaces;
 
@@ -9,6 +10,7 @@ namespace RealEstateManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PropertyImageController(IPropertyImageService propertyImageService) : ControllerBase
     {
         private readonly IPropertyImageService _propertyImageService = propertyImageService;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RealEstateManager.Application.Propertys.Dto;
 using RealEstateManager.Application.Propertys.Interfaces;
 using RealEstateManager.Application.Propertys.Validations;
@@ -10,6 +11,7 @@ namespace RealEstateManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PropertyController(IPropertyService propertyServices) : ControllerBase
     {
         private readonly IPropertyService _propertyServices = propertyServices;
