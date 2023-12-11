@@ -1,6 +1,6 @@
 # RealEstateManagerBack
 
-Bienvenido al proyecto RealEstateManager Este proyecto implementa una solución basada en TDD (Desarrollo Guiado por Pruebas), Net 8 que sigue la arquitectura hexagonal. La aplicación consta de una API y utiliza una base de datos también contenerizada.
+Bienvenido al proyecto RealEstateManager Este proyecto implementa una solución basada en TDD (Desarrollo Guiado por Pruebas), Net 8 que sigue la arquitectura hexagonal. La aplicación consta de una API y utiliza una base de datos contenerizada en docker.
 
 ## Configuración del Entorno
 
