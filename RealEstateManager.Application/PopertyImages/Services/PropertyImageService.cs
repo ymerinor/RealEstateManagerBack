@@ -21,21 +21,22 @@ namespace RealEstateManager.Application.PopertyImages.Services
         IPropertyImageRepository propertyImageRepository,
         IFilesManager filesManager) : IPropertyImageService
     {
-        private readonly IPropertyRepository _propertyRepository = propertyRepository ?? throw new ArgumentNullException(nameof(propertyRepository));
-        private readonly IPropertyImageRepository _propertyImageRepository = propertyImageRepository ?? throw new ArgumentNullException(nameof(propertyImageRepository));
-        private readonly IFilesManager _filesManager = filesManager ?? throw new ArgumentNullException(nameof(filesManager));
+        private readonly IPropertyRepository _propertyRepository = propertyRepository;
+        private readonly IPropertyImageRepository _propertyImageRepository = propertyImageRepository;
+        private readonly IFilesManager _filesManager = filesManager;
 
         /// <inheritdoc/>
-        public async Task<PropertyImage> AddImagePropertyAsync(PropertyImageDto propertyImageDto)
+        public async Task<PropertyImageOut> AddImagePropertyAsync(PropertyImageDto propertyImageDto)
         {
             // Verificar si la propiedad existe
             var existsProperty = await _propertyRepository.GetByIdAsync(propertyImageDto.IdProperty);
             if (existsProperty is null)
                 throw new NoContentException($"No se encontró información relacionada con la propiedad ID {propertyImageDto.IdProperty}");
 
-            var pathfile = await _filesManager.SaveImageAsync(propertyImageDto.ImageFile);
+            var pathfile = _filesManager.SaveImageAsync(propertyImageDto.ImageFile);
             var propertyImage = new PropertyImage { FilePath = pathfile, IdProperty = existsProperty.IdProperty, Enabled = true };
-            return await _propertyImageRepository.CreateAsync(propertyImage);
+            var propertyImageUpload = await _propertyImageRepository.CreateAsync(propertyImage);
+            return (PropertyImageOut)propertyImageUpload;
         }
     }
 

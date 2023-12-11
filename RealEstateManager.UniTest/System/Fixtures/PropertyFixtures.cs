@@ -1,5 +1,6 @@
 ﻿using RealEstateManager.Application.Authenication.Dto;
 using RealEstateManager.Application.Common;
+using RealEstateManager.Application.PopertyImages.Dto;
 using RealEstateManager.Application.Propertys.Dto;
 using RealEstateManager.Domain.Owners;
 using RealEstateManager.Domain.PropertyImages;
@@ -118,6 +119,14 @@ namespace RealEstateManager.UnitTest.System.Fixtures
             LastModified = DateTime.Now
         };
         public static PropertyImage PropertyImageSemilla => new()
+        {
+            IdPropertyImage = 1,
+            IdProperty = 1,
+            FilePath = "C://Nueva_Ruta",
+            Enabled = true,
+
+        };
+        public static PropertyImageOut PropertyImageOutTest => new()
         {
             IdPropertyImage = 1,
             IdProperty = 1,

@@ -38,7 +38,7 @@ namespace RealEstateManager.UnitTest.System.Controllers
             //Arrage
             var fileMock = new Mock<IFormFile>();
             _mockPropertyImagesServices.Setup(service => service.AddImagePropertyAsync(It.IsAny<PropertyImageDto>()))
-                .ReturnsAsync(PropertyFixtures.PropertyImageSemilla);
+                .ReturnsAsync(PropertyFixtures.PropertyImageOutTest);
             var controller = new PropertyImageController(_mockPropertyImagesServices.Object);
             //Act
             await controller.Post(new PropertyImageDto { IdProperty = 1, ImageFile = fileMock.Object });

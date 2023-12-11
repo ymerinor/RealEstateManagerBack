@@ -31,7 +31,7 @@ namespace RealEstateManager.UniTest.System.Application.Services
             var fileMock = new Mock<IFormFile>();
             _mockRepository.Setup(repository => repository.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(PropertyFixtures.PropertySemillaTest);
             _mockPropertyRepository.Setup(repositoryImagen => repositoryImagen.CreateAsync(It.IsAny<PropertyImage>())).ReturnsAsync(PropertyFixtures.PropertyImageSemilla);
-            _mockFilesManager.Setup(repositoryfiles => repositoryfiles.SaveImageAsync(It.IsAny<IFormFile>())).ReturnsAsync("D:\\StorageProperty");
+            _mockFilesManager.Setup(repositoryfiles => repositoryfiles.SaveImageAsync(It.IsAny<IFormFile>())).Returns("D:\\StorageProperty");
             var serviceProperty = new PropertyImageService(_mockRepository.Object, _mockPropertyRepository.Object, _mockFilesManager.Object);
             //Act
             var result = await serviceProperty.AddImagePropertyAsync(new PropertyImageDto { IdProperty = 1, ImageFile = fileMock.Object });
@@ -46,7 +46,7 @@ namespace RealEstateManager.UniTest.System.Application.Services
             //Arrage
             var fileMock = new Mock<IFormFile>();
             _mockPropertyRepository.Setup(repositoryImagen => repositoryImagen.CreateAsync(It.IsAny<PropertyImage>())).ReturnsAsync(PropertyFixtures.PropertyImageSemilla);
-            _mockFilesManager.Setup(repositoryfiles => repositoryfiles.SaveImageAsync(It.IsAny<IFormFile>())).ReturnsAsync("D:\\StorageProperty");
+            _mockFilesManager.Setup(repositoryfiles => repositoryfiles.SaveImageAsync(It.IsAny<IFormFile>())).Returns("D:\\StorageProperty");
             var serviceProperty = new PropertyImageService(_mockRepository.Object, _mockPropertyRepository.Object, _mockFilesManager.Object);
             //Act & Assert
             Assert.ThrowsAsync<NoContentException>(async () => await serviceProperty.AddImagePropertyAsync(new PropertyImageDto { IdProperty = 1, ImageFile = fileMock.Object }));

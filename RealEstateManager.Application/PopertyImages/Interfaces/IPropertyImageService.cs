@@ -10,6 +10,6 @@ namespace RealEstateManager.Application.PopertyImages.Interfaces
         /// </summary>
         /// <param name="propertyImageDto">DTO de la imagen de la propiedad.</param>
         /// <returns>La entidad <see cref="PropertyImage"/> creada.</returns>
-        Task<PropertyImage> AddImagePropertyAsync(PropertyImageDto ImageFile);
+        Task<PropertyImageOut> AddImagePropertyAsync(PropertyImageDto ImageFile);
     }
 }

@@ -10,6 +10,6 @@ namespace RealEstateManager.Domain.FilesManager
         /// </summary>
         /// <param name="imageDto">Archivo de imagen a guardar.</param>
         /// <returns>Ruta del archivo guardado.</returns>
-        Task<string> SaveImageAsync(IFormFile imageDto);
+        string SaveImageAsync(IFormFile imageDto);
     }
 }
