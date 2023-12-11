@@ -15,7 +15,7 @@ Asegúrate de tener instalados los siguientes requisitos previos:
     ```bash
     docker-compose up -d
     ```
-3. Después de iniciar la base de datos, ejecuta el archivo `init-db.sql` en tu herramienta de administración de SQL para crear la base de datos y la tabla necesaria.
+3. Después de iniciar la base de datos, ejecuta el archivo `init-db.sql` en tu herramienta de administración de SQL para crear la base de datos y la tabla necesaria. para efectos de pruebas se crear algunos regisros en las tablas de  : PropertyType y Owner.
 ## Uso de la API
 La API estará disponible en la URL [http://localhost:puerto](http://localhost:puerto), donde "puerto" es el puerto que hayas configurado en tu archivo `docker-compose.yml`.
 
